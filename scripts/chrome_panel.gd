@@ -5,6 +5,8 @@ const DEFAULT_ACCENT := Color8(84, 232, 255, 190)
 const DEFAULT_TRIM := Color8(49, 108, 144, 170)
 const DEFAULT_GLOW := Color8(255, 177, 69, 210)
 
+static var _frame_texture_cache := {}
+
 @export var fill_color: Color = DEFAULT_FILL
 @export var accent_color: Color = DEFAULT_ACCENT
 @export var trim_color: Color = DEFAULT_TRIM
@@ -103,12 +105,15 @@ func _get_frame_texture() -> Texture2D:
 	_frame_texture = null
 	if frame_texture_path.is_empty():
 		return null
-	var image := Image.new()
-	var error := image.load(ProjectSettings.globalize_path(frame_texture_path))
-	if error != OK:
+	if _frame_texture_cache.has(frame_texture_path):
+		_frame_texture = _frame_texture_cache[frame_texture_path]
+		return _frame_texture
+	var texture := load(frame_texture_path) as Texture2D
+	if texture == null:
 		push_warning("Unable to load frame texture: %s" % frame_texture_path)
 		return null
-	_frame_texture = ImageTexture.create_from_image(image)
+	_frame_texture_cache[frame_texture_path] = texture
+	_frame_texture = texture
 	return _frame_texture
 
 

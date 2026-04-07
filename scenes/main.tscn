@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene format=3 uid="uid://btf45di08dfdb"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
-[ext_resource type="Script" path="res://scripts/chrome_panel.gd" id="2_chrome"]
-[ext_resource type="Script" path="res://scripts/ui/panel_section.gd" id="3_section"]
+[ext_resource type="Script" uid="uid://b6kha750w7y5v" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://bip4lr2cxwtmg" path="res://scripts/chrome_panel.gd" id="2_chrome"]
+[ext_resource type="Script" uid="uid://c17thcqfhci7o" path="res://scripts/ui/panel_section.gd" id="3_section"]
 [ext_resource type="PackedScene" path="res://scenes/components/header_chip.tscn" id="4_chip"]
 [ext_resource type="PackedScene" path="res://scenes/components/nav_button.tscn" id="5_nav"]
 [ext_resource type="PackedScene" path="res://scenes/components/stat_chip.tscn" id="6_stat"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" path="res://scenes/components/sparkline.tscn" id="9_spark"]
 [ext_resource type="PackedScene" path="res://scenes/components/action_button.tscn" id="10_action"]
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" unique_id=2062428339]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_main")
 
-[node name="RootMargin" type="MarginContainer" parent="."]
+[node name="RootMargin" type="MarginContainer" parent="." unique_id=1400176515]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,18 +32,19 @@ theme_override_constants/margin_top = 14
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 14
 
-[node name="MainColumn" type="VBoxContainer" parent="RootMargin"]
+[node name="MainColumn" type="VBoxContainer" parent="RootMargin" unique_id=1444901156]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="TopStrip" type="HBoxContainer" parent="RootMargin/MainColumn"]
+[node name="TopStrip" type="HBoxContainer" parent="RootMargin/MainColumn" unique_id=1903365021]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="BrandPanel" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip"]
+[node name="BrandPanel" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip" unique_id=3595477]
 custom_minimum_size = Vector2(318, 72)
+layout_mode = 2
 script = ExtResource("2_chrome")
 fill_color = Color(0.06, 0.14, 0.23, 0.96)
 accent_color = Color(0.345098, 0.941176, 1, 0.84)
@@ -53,24 +54,20 @@ emphasize_right = true
 frame_texture_path = "res://assets/ui/panel_frame_cyan.png"
 frame_patch_margin = 30
 
-[node name="BrandMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="BrandMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel" unique_id=798118304]
+layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="BrandRow" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin"]
+[node name="BrandRow" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin" unique_id=2011144023]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Emblem" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow"]
+[node name="Emblem" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow" unique_id=691082752]
 custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
 script = ExtResource("2_chrome")
 fill_color = Color(0.09, 0.2, 0.31, 1)
 accent_color = Color(0.345098, 0.941176, 1, 0.84)
@@ -80,37 +77,33 @@ compact = true
 show_inner_frame = false
 cut_size = 12.0
 
-[node name="EmblemLabel" type="Label" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow/Emblem"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="EmblemLabel" type="Label" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow/Emblem" unique_id=1906033406]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.345098, 0.941176, 1, 1)
+theme_override_font_sizes/font_size = 18
 text = "KA"
 horizontal_alignment = 1
 vertical_alignment = 1
-theme_override_colors/font_color = Color(0.345098, 0.941176, 1, 1)
-theme_override_font_sizes/font_size = 18
 
-[node name="BrandCopy" type="VBoxContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow"]
+[node name="BrandCopy" type="VBoxContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow" unique_id=1325631286]
 layout_mode = 2
 alignment = 1
 
-[node name="BrandTitle" type="Label" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow/BrandCopy"]
+[node name="BrandTitle" type="Label" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow/BrandCopy" unique_id=1079655045]
 layout_mode = 2
-text = "K8S COMMAND"
 theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
 theme_override_font_sizes/font_size = 24
+text = "K8S COMMAND"
 
-[node name="BrandSubtitle" type="Label" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow/BrandCopy"]
+[node name="BrandSubtitle" type="Label" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow/BrandCopy" unique_id=760222570]
 layout_mode = 2
-text = "TACTICAL KUBERNETES CONTROL SURFACE"
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 11
+text = "TACTICAL KUBERNETES CONTROL SURFACE"
 
-[node name="SummaryPanel" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip"]
+[node name="SummaryPanel" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip" unique_id=1852893616]
 custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_chrome")
 fill_color = Color(0.05, 0.12, 0.2, 0.96)
@@ -120,66 +113,64 @@ glow_color = Color(1, 0.717647, 0.262745, 1)
 frame_texture_path = "res://assets/ui/panel_frame_cyan.png"
 frame_patch_margin = 30
 
-[node name="SummaryMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SummaryMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel" unique_id=1491872585]
+layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="SummaryRow" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin"]
+[node name="SummaryRow" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin" unique_id=278685235]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="SummaryTitles" type="VBoxContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow"]
+[node name="SummaryTitles" type="VBoxContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow" unique_id=1483679143]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SummaryContext" type="Label" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryTitles"]
+[node name="SummaryContext" type="Label" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryTitles" unique_id=1942452001]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
 theme_override_font_sizes/font_size = 19
+clip_text = true
 
-[node name="SummaryMeta" type="Label" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryTitles"]
+[node name="SummaryMeta" type="Label" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryTitles" unique_id=1864082207]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 12
+clip_text = true
 
-[node name="SummaryChips" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow"]
+[node name="SummaryChips" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow" unique_id=877621696]
 layout_mode = 2
-alignment = 2
 theme_override_constants/separation = 10
+alignment = 2
 
-[node name="SummaryPods" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" instance=ExtResource("6_stat")]
+[node name="SummaryPods" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" unique_id=2100497758 instance=ExtResource("6_stat")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "PODS 0"
 
-[node name="SummaryNodes" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" instance=ExtResource("6_stat")]
+[node name="SummaryNodes" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" unique_id=733690138 instance=ExtResource("6_stat")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "NODES 0"
 
-[node name="SummaryCPU" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" instance=ExtResource("6_stat")]
+[node name="SummaryCPU" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" unique_id=508395869 instance=ExtResource("6_stat")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "CPU 0%"
 
-[node name="SummaryMemory" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" instance=ExtResource("6_stat")]
+[node name="SummaryMemory" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" unique_id=1146276141 instance=ExtResource("6_stat")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "MEM 0%"
 
-[node name="ActionPanel" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip"]
-custom_minimum_size = Vector2(320, 72)
+[node name="ActionPanel" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip" unique_id=2056421252]
+custom_minimum_size = Vector2(232, 72)
+layout_mode = 2
 script = ExtResource("2_chrome")
 fill_color = Color(0.08, 0.13, 0.2, 0.96)
 accent_color = Color(0.345098, 0.941176, 1, 0.84)
@@ -189,117 +180,151 @@ emphasize_right = true
 frame_texture_path = "res://assets/ui/panel_frame_cyan.png"
 frame_patch_margin = 30
 
-[node name="ActionMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/ActionPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ActionMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/ActionPanel" unique_id=2123052762]
+layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="ActionRow" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/ActionPanel/ActionMargin"]
+[node name="ActionRow" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/ActionPanel/ActionMargin" unique_id=1325876580]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ConnectionMode" type="Label" parent="RootMargin/MainColumn/TopStrip/ActionPanel/ActionMargin/ActionRow"]
+[node name="ConnectionMode" type="Label" parent="RootMargin/MainColumn/TopStrip/ActionPanel/ActionMargin/ActionRow" unique_id=111231196]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 12
 vertical_alignment = 1
-theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
-theme_override_font_sizes/font_size = 14
+clip_text = true
 
-[node name="RefreshButton" parent="RootMargin/MainColumn/TopStrip/ActionPanel/ActionMargin/ActionRow" instance=ExtResource("10_action")]
+[node name="RefreshButton" parent="RootMargin/MainColumn/TopStrip/ActionPanel/ActionMargin/ActionRow" unique_id=30890515 instance=ExtResource("10_action")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(110, 40)
 layout_mode = 2
 label_text = "REFRESH"
 pressed_glow_color = Color(1, 0.717647, 0.262745, 1)
 
-[node name="Body" type="HBoxContainer" parent="RootMargin/MainColumn"]
+[node name="StatusPanel" type="PanelContainer" parent="RootMargin/MainColumn"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_chrome")
+fill_color = Color(0.06, 0.13, 0.22, 0.98)
+accent_color = Color(1, 0.717647, 0.262745, 0.88)
+trim_color = Color(0.156863, 0.376471, 0.486275, 0.8)
+glow_color = Color(1, 0.717647, 0.262745, 1)
+frame_texture_path = "res://assets/ui/panel_frame_orange.png"
+frame_patch_margin = 30
+
+[node name="StatusMargin" type="MarginContainer" parent="RootMargin/MainColumn/StatusPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="StatusColumn" type="VBoxContainer" parent="RootMargin/MainColumn/StatusPanel/StatusMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="StatusMessage" type="Label" parent="RootMargin/MainColumn/StatusPanel/StatusMargin/StatusColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.952941, 0.968627, 1, 1)
+theme_override_font_sizes/font_size = 15
+autowrap_mode = 3
+text = "INITIALIZING CONTROL SURFACE..."
+
+[node name="StatusDetail" type="Label" parent="RootMargin/MainColumn/StatusPanel/StatusMargin/StatusColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 11
+clip_text = true
+text = "BOOTSTRAP // STANDBY"
+
+[node name="Body" type="HBoxContainer" parent="RootMargin/MainColumn" unique_id=1816811221]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="LeftColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body"]
+[node name="LeftColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body" unique_id=895165417]
 custom_minimum_size = Vector2(202, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ScopePanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
+[node name="ScopePanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn" unique_id=1272325778]
+layout_mode = 2
 script = ExtResource("3_section")
 section_title = "Cluster Scope"
 section_accent_color = Color(0.345098, 0.941176, 1, 1)
 
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel" unique_id=851422566]
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 9
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin"]
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin" unique_id=951941916]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell"]
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell" unique_id=100388653]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/HeaderRow" unique_id=1799316988 instance=ExtResource("4_chip")]
 layout_mode = 2
 
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/HeaderRow"]
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/HeaderRow" unique_id=1645441846]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/HeaderRow/RuleWrap" unique_id=506358845]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell"]
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell" unique_id=252052331]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="ContextsButtons" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body"]
+[node name="ContextsButtons" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body" unique_id=1232570260]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="NamespaceLabel" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body"]
+[node name="NamespaceLabel" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body" unique_id=1985715551]
 layout_mode = 2
-text = "NAMESPACE"
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 10
+text = "NAMESPACE"
 
-[node name="NamespaceOption" type="OptionButton" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body"]
+[node name="NamespaceOption" type="OptionButton" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body" unique_id=325784230]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ModeHint" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body"]
+[node name="ModeHint" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body" unique_id=2053823709]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
 
-[node name="ImportKubeconfigButton" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body" instance=ExtResource("10_action")]
+[node name="ImportKubeconfigButton" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body" unique_id=1549035193 instance=ExtResource("10_action")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 36)
 layout_mode = 2
@@ -307,569 +332,726 @@ label_text = "IMPORT CONFIG"
 hover_glow_color = Color(0.345098, 0.941176, 1, 1)
 pressed_glow_color = Color(0.509804, 1, 0.780392, 1)
 
-[node name="NavigationPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
+[node name="UseDemoButton" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body" unique_id=92164991 instance=ExtResource("10_action")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+label_text = "USE DEMO"
+hover_glow_color = Color(1, 0.717647, 0.262745, 1)
+pressed_glow_color = Color(1, 0.556863, 0.384314, 1)
+
+[node name="NavigationPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn" unique_id=2131114302]
+layout_mode = 2
 script = ExtResource("3_section")
 section_title = "Navigation"
 section_accent_color = Color(0.454902, 0.690196, 1, 1)
 
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel" unique_id=386206885]
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 9
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin"]
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin" unique_id=285264854]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell"]
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell" unique_id=1951002016]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow" unique_id=193126692 instance=ExtResource("4_chip")]
 layout_mode = 2
 
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow"]
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow" unique_id=1567539600]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow/RuleWrap" unique_id=1570229993]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell"]
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell" unique_id=1410159843]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="NavWorkloads" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavApplications" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" unique_id=499949959 instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
-label_text = "WORKLOADS"
+label_text = "APPLICATIONS"
 
-[node name="NavNodes" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavPods" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "PODS"
+
+[node name="NavDeployments" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "DEPLOYMENTS"
+
+[node name="NavNodes" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" unique_id=1856302077 instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "NODES"
 
-[node name="NavConfig" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavConfigMaps" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" unique_id=1834341585 instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
-label_text = "CONFIG"
+label_text = "CONFIG MAPS"
 
-[node name="NavNetwork" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavNetwork" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" unique_id=1078443132 instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "NETWORK"
 
-[node name="NavStorage" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavStorage" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" unique_id=845898672 instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "STORAGE"
 
-[node name="NavHelm" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavHelm" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" unique_id=29277687 instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "HELM"
 
-[node name="NavAccess" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavAccess" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" unique_id=1809256548 instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
 label_text = "ACCESS"
 
-[node name="TelemetryPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
+[node name="TelemetryPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn" unique_id=1768671774]
+layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("3_section")
 section_title = "Flight Telemetry"
 section_accent_color = Color(0.345098, 0.941176, 1, 1)
 
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel" unique_id=1877482109]
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 9
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin"]
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin" unique_id=477968911]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell"]
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell" unique_id=1062935096]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow" unique_id=125935666 instance=ExtResource("4_chip")]
 layout_mode = 2
 
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow"]
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow" unique_id=2096444884]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow/RuleWrap" unique_id=889220425]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell"]
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell" unique_id=671847891]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="TelemetrySummary" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body"]
+[node name="TelemetrySummary" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body" unique_id=1974204180]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
 theme_override_font_sizes/font_size = 15
+autowrap_mode = 3
 
-[node name="TelemetrySpark" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body" instance=ExtResource("9_spark")]
+[node name="TelemetrySpark" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body" unique_id=38182585 instance=ExtResource("9_spark")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 84)
 layout_mode = 2
-custom_minimum_size = Vector2(0, 118)
 size_flags_vertical = 3
 
-[node name="TelemetryFooter" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body"]
+[node name="TelemetryFooter" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body" unique_id=931826013]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 13
+autowrap_mode = 3
 
-[node name="CenterColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body"]
+[node name="CenterColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body" unique_id=783720376]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="OverviewPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn"]
+[node name="OverviewPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn" unique_id=1144357760]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("3_section")
 section_title = "Cluster Overview"
 section_accent_color = Color(0.345098, 0.941176, 1, 1)
 
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel" unique_id=248702333]
+layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin"]
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin" unique_id=1751401377]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell"]
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell" unique_id=409646169]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/HeaderRow" unique_id=909606691 instance=ExtResource("4_chip")]
 layout_mode = 2
 
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/HeaderRow"]
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/HeaderRow" unique_id=208021111]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 12
 
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/HeaderRow/RuleWrap" unique_id=1528206485]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell"]
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell" unique_id=257217841]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="OverviewHeader" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body"]
+[node name="OverviewHeader" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body" unique_id=558425742]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="OverviewTitle" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body/OverviewHeader"]
+[node name="OverviewTitle" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body/OverviewHeader" unique_id=1457225806]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
 theme_override_font_sizes/font_size = 22
 
-[node name="OverviewStatus" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body/OverviewHeader"]
+[node name="OverviewStatus" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body/OverviewHeader" unique_id=1112033676]
 unique_name_in_owner = true
 layout_mode = 2
-horizontal_alignment = 2
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 13
+horizontal_alignment = 2
 
-[node name="ClusterMap" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body" instance=ExtResource("8_map")]
+[node name="ClusterMap" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body" unique_id=1848805481 instance=ExtResource("8_map")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 272)
 layout_mode = 2
-custom_minimum_size = Vector2(0, 320)
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="LowerRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn"]
-custom_minimum_size = Vector2(0, 208)
+[node name="LowerRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn" unique_id=1912462418]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 12
 
-[node name="EventPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow"]
+[node name="EventPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow" unique_id=156643949]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("3_section")
 section_title = "Event Stream"
 section_accent_color = Color(1, 0.717647, 0.262745, 1)
 
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel" unique_id=1784266206]
+layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin"]
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin" unique_id=1233862235]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell"]
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell" unique_id=296474907]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/HeaderRow" unique_id=1009619777 instance=ExtResource("4_chip")]
 layout_mode = 2
 
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/HeaderRow"]
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/HeaderRow" unique_id=943547483]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 12
 
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/HeaderRow/RuleWrap" unique_id=1527700818]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell"]
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell" unique_id=180628370]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="EventStream" type="TextEdit" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/Body"]
+[node name="EventStream" type="TextEdit" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/Body" unique_id=953993537]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-editable = false
 focus_mode = 0
+editable = false
 
-[node name="MetricsPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow"]
+[node name="MetricsPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow" unique_id=584285074]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("3_section")
 section_title = "Metrics"
 section_accent_color = Color(0.407843, 1, 0.603922, 1)
 
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel" unique_id=449162846]
+layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin"]
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin" unique_id=1325789397]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell"]
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell" unique_id=291079102]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/HeaderRow" unique_id=741149781 instance=ExtResource("4_chip")]
 layout_mode = 2
 
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/HeaderRow"]
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/HeaderRow" unique_id=1920131226]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 12
 
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/HeaderRow/RuleWrap" unique_id=630261355]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell"]
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell" unique_id=1082444379]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="MetricsGrid" type="GridContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body"]
+[node name="MetricsControlRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MetricsModeLabel" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsControlRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 12
+text = "LIVE METRICS POLL // OFF"
+
+[node name="MetricsToggleButton" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsControlRow" instance=ExtResource("10_action")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(138, 34)
+layout_mode = 2
+label_text = "METRICS ON"
+hover_glow_color = Color(0.407843, 1, 0.603922, 1)
+pressed_glow_color = Color(1, 0.717647, 0.262745, 1)
+
+[node name="MetricsGrid" type="GridContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body" unique_id=2029816751]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
+columns = 2
 
-[node name="MetricCPU" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" instance=ExtResource("7_metric")]
+[node name="MetricCPU" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" unique_id=357981555 instance=ExtResource("7_metric")]
 unique_name_in_owner = true
 layout_mode = 2
 card_title = "CPU Load"
 line_color = Color(1, 0.717647, 0.262745, 1)
 
-[node name="MetricMemory" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" instance=ExtResource("7_metric")]
+[node name="MetricMemory" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" unique_id=567752045 instance=ExtResource("7_metric")]
 unique_name_in_owner = true
 layout_mode = 2
 card_title = "Memory"
 line_color = Color(1, 0.556863, 0.384314, 1)
 
-[node name="MetricPods" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" instance=ExtResource("7_metric")]
+[node name="MetricPods" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" unique_id=840289765 instance=ExtResource("7_metric")]
 unique_name_in_owner = true
 layout_mode = 2
 card_title = "Pod Readiness"
 line_color = Color(0.407843, 1, 0.603922, 1)
 
-[node name="MetricEvents" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" instance=ExtResource("7_metric")]
+[node name="MetricEvents" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" unique_id=1127586961 instance=ExtResource("7_metric")]
 unique_name_in_owner = true
 layout_mode = 2
 card_title = "Event Rate"
 line_color = Color(0.345098, 0.941176, 1, 1)
 
-[node name="TerminalPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow"]
+[node name="TerminalPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow" unique_id=771919329]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("3_section")
 section_title = "Terminal"
 section_accent_color = Color(0.454902, 0.690196, 1, 1)
 
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel" unique_id=1014279934]
+layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin"]
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin" unique_id=1008024064]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell"]
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell" unique_id=345232865]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/HeaderRow" unique_id=250429389 instance=ExtResource("4_chip")]
 layout_mode = 2
 
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/HeaderRow"]
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/HeaderRow" unique_id=1954205381]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 12
 
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/HeaderRow/RuleWrap" unique_id=1391536821]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell"]
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell" unique_id=53899156]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="TerminalTitle" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/Body"]
+[node name="TerminalTitle" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/Body" unique_id=1867319217]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 13
 
-[node name="TerminalOutput" type="TextEdit" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/Body"]
+[node name="TerminalOutput" type="TextEdit" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/Body" unique_id=2061314278]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-editable = false
 focus_mode = 0
+editable = false
 
-[node name="RightColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body"]
+[node name="RightColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body" unique_id=1827716871]
 custom_minimum_size = Vector2(342, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DetailPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/RightColumn"]
+[node name="DetailPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/RightColumn" unique_id=2071785928]
+layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("3_section")
 section_title = "Inspector"
 section_accent_color = Color(0.345098, 0.941176, 1, 1)
 section_emphasize_right = true
 
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel"]
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel" unique_id=1569838774]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin" unique_id=463269838]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell" unique_id=1776885181]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/HeaderRow" unique_id=1108495143 instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/HeaderRow" unique_id=280775546]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/HeaderRow/RuleWrap" unique_id=2141461111]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell" unique_id=528308457]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="DetailTitle" type="Label" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body" unique_id=604032201]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="DetailSubtitle" type="Label" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body" unique_id=1923186998]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="DetailTabs" type="TabContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body" unique_id=1270945759]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Overview" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs" unique_id=2045106555]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+editable = false
+metadata/_tab_index = 0
+
+[node name="Logs" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs" unique_id=1699371580]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+focus_mode = 0
+editable = false
+metadata/_tab_index = 1
+
+[node name="Events" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs" unique_id=699628017]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+focus_mode = 0
+editable = false
+metadata/_tab_index = 2
+
+[node name="Metrics" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs" unique_id=812538601]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+focus_mode = 0
+editable = false
+metadata/_tab_index = 3
+
+[node name="DetailActions" type="HBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body" unique_id=641118753]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ExecButton" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailActions" unique_id=398039581 instance=ExtResource("10_action")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(126, 40)
+layout_mode = 2
+label_text = "EXEC SHELL"
+
+[node name="YamlButton" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailActions" unique_id=294513699 instance=ExtResource("10_action")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(124, 40)
+layout_mode = 2
+label_text = "VIEW YAML"
+
+[node name="PortButton" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailActions" unique_id=1763789318 instance=ExtResource("10_action")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(138, 40)
+layout_mode = 2
+label_text = "PORT FORWARD"
+hover_glow_color = Color(0.509804, 1, 0.780392, 1)
+
+[node name="DetailFooter" type="Label" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body" unique_id=1197199522]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 3
+
+[node name="KubeconfigDialog" type="FileDialog" parent="." unique_id=639028094]
+unique_name_in_owner = true
+title = "Open a File"
+size = Vector2i(960, 640)
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.yaml ; Kubeconfig YAML", "*.yml ; Kubeconfig YAML", "*.kubeconfig ; Kubeconfig", "* ; All files")
+use_native_dialog = true
+
+[node name="ImportErrorPopup" type="Control" parent="." unique_id=529086960]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
 
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin"]
+[node name="Backdrop" type="ColorRect" parent="ImportErrorPopup" unique_id=11713242]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0117647, 0.0235294, 0.0431373, 0.82)
+
+[node name="Center" type="CenterContainer" parent="ImportErrorPopup" unique_id=564913499]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="ImportErrorPopup/Center" unique_id=787129861]
+custom_minimum_size = Vector2(760, 0)
+layout_mode = 2
+script = ExtResource("2_chrome")
+fill_color = Color(0.054902, 0.109804, 0.180392, 0.98)
+accent_color = Color(1, 0.717647, 0.262745, 0.9)
+trim_color = Color(0.188235, 0.380392, 0.494118, 0.78)
+glow_color = Color(1, 0.717647, 0.262745, 1)
+emphasize_right = true
+frame_texture_path = "res://assets/ui/panel_frame_orange.png"
+frame_patch_margin = 30
+
+[node name="Margin" type="MarginContainer" parent="ImportErrorPopup/Center/Card" unique_id=212246876]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 18
+
+[node name="Shell" type="VBoxContainer" parent="ImportErrorPopup/Center/Card/Margin" unique_id=15807875]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="HeaderRow" type="HBoxContainer" parent="ImportErrorPopup/Center/Card/Margin/Shell" unique_id=839249010]
+layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell"]
+[node name="HeaderChip" parent="ImportErrorPopup/Center/Card/Margin/Shell/HeaderRow" unique_id=1550339018 instance=ExtResource("4_chip")]
 layout_mode = 2
-theme_override_constants/separation = 8
+chip_text = "KUBECONFIG ERROR"
+chip_color = Color(1, 0.717647, 0.262745, 1)
 
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
-layout_mode = 2
-
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/HeaderRow"]
+[node name="AlertLabel" type="Label" parent="ImportErrorPopup/Center/Card/Margin/Shell/HeaderRow" unique_id=1113843395]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 12
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 12
+text = "IMPORT FAILURE // CLUSTER BRIDGE"
+vertical_alignment = 1
 
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
-custom_minimum_size = Vector2(0, 2)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 10
-
-[node name="DetailTitle" type="Label" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
-unique_name_in_owner = true
+[node name="BodyTitle" type="Label" parent="ImportErrorPopup/Center/Card/Margin/Shell" unique_id=710306408]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
+text = "Unable to load the selected cluster configuration."
+autowrap_mode = 3
 
-[node name="DetailSubtitle" type="Label" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
-unique_name_in_owner = true
+[node name="BodyHint" type="Label" parent="ImportErrorPopup/Center/Card/Margin/Shell" unique_id=905530128]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 13
+text = "Review the details below. If this config is not usable, switch back to the demo cluster."
+autowrap_mode = 3
 
-[node name="DetailTabs" type="TabContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
+[node name="MessageFrame" type="PanelContainer" parent="ImportErrorPopup/Center/Card/Margin/Shell" unique_id=1973333940]
+custom_minimum_size = Vector2(0, 184)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_chrome")
+fill_color = Color(0.0313726, 0.0745098, 0.121569, 0.96)
+accent_color = Color(0.345098, 0.941176, 1, 0.86)
+trim_color = Color(0.145098, 0.317647, 0.427451, 0.72)
+glow_color = Color(0.345098, 0.941176, 1, 1)
+compact = true
+show_inner_frame = false
+cut_size = 12.0
+frame_texture_path = "res://assets/ui/panel_frame_cyan.png"
+frame_patch_margin = 24
+
+[node name="MessageMargin" type="MarginContainer" parent="ImportErrorPopup/Center/Card/Margin/Shell/MessageFrame" unique_id=1795895774]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="ImportErrorMessage" type="RichTextLabel" parent="ImportErrorPopup/Center/Card/Margin/Shell/MessageFrame/MessageMargin" unique_id=349383599]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+focus_mode = 2
+theme_override_colors/default_color = Color(0.847059, 0.929412, 0.980392, 1)
+theme_override_font_sizes/normal_font_size = 14
+selection_enabled = true
 
-[node name="Overview" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs"]
+[node name="Actions" type="HBoxContainer" parent="ImportErrorPopup/Center/Card/Margin/Shell" unique_id=565316382]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="ImportErrorCopyButton" parent="ImportErrorPopup/Center/Card/Margin/Shell/Actions" unique_id=236755470 instance=ExtResource("10_action")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(154, 40)
+layout_mode = 2
+label_text = "COPY ERROR"
+hover_glow_color = Color(0.345098, 0.941176, 1, 1)
+pressed_glow_color = Color(0.509804, 1, 0.780392, 1)
+
+[node name="ImportErrorUseDemoButton" parent="ImportErrorPopup/Center/Card/Margin/Shell/Actions" unique_id=1260723423 instance=ExtResource("10_action")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(146, 40)
+layout_mode = 2
+label_text = "USE DEMO"
+hover_glow_color = Color(1, 0.717647, 0.262745, 1)
+pressed_glow_color = Color(1, 0.556863, 0.384314, 1)
+
+[node name="ImportErrorDismissButton" parent="ImportErrorPopup/Center/Card/Margin/Shell/Actions" unique_id=1494808044 instance=ExtResource("10_action")]
 unique_name_in_owner = true
 layout_mode = 2
-editable = false
-focus_mode = 0
-
-[node name="Logs" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs"]
-unique_name_in_owner = true
-layout_mode = 2
-editable = false
-focus_mode = 0
-
-[node name="Events" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs"]
-unique_name_in_owner = true
-layout_mode = 2
-editable = false
-focus_mode = 0
-
-[node name="Metrics" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs"]
-unique_name_in_owner = true
-layout_mode = 2
-editable = false
-focus_mode = 0
-
-[node name="DetailActions" type="HBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="ExecButton" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailActions" instance=ExtResource("10_action")]
-unique_name_in_owner = true
-layout_mode = 2
-custom_minimum_size = Vector2(126, 40)
-label_text = "EXEC SHELL"
-
-[node name="YamlButton" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailActions" instance=ExtResource("10_action")]
-unique_name_in_owner = true
-layout_mode = 2
-custom_minimum_size = Vector2(124, 40)
-label_text = "VIEW YAML"
-
-[node name="PortButton" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailActions" instance=ExtResource("10_action")]
-unique_name_in_owner = true
-layout_mode = 2
-custom_minimum_size = Vector2(138, 40)
-label_text = "PORT FORWARD"
-hover_glow_color = Color(0.509804, 1, 0.780392, 1)
-
-[node name="DetailFooter" type="Label" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
-unique_name_in_owner = true
-layout_mode = 2
-autowrap_mode = 3
-theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
-theme_override_font_sizes/font_size = 13
-
-[node name="KubeconfigDialog" type="FileDialog" parent="."]
-unique_name_in_owner = true
-visible = false
-title = "Select kubeconfig"
-size = Vector2i(960, 640)
-access = 2
-file_mode = 0
-use_native_dialog = true
-filters = PackedStringArray("*.yaml ; Kubeconfig YAML", "*.yml ; Kubeconfig YAML", "*.conf ; Config", "* ; All files")
+label_text = "DISMISS"
+hover_glow_color = Color(0.345098, 0.941176, 1, 1)
+pressed_glow_color = Color(0.509804, 1, 0.780392, 1)

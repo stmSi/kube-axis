@@ -12,6 +12,7 @@ const SUCCESS := Color8(108, 255, 154, 255)
 const WARNING := Color8(255, 181, 64, 255)
 const DANGER := Color8(255, 103, 103, 255)
 const CORE_GLOW := Color8(74, 234, 255, 100)
+const REDRAW_INTERVAL := 1.0 / 15.0
 
 var overlay: Control
 var groups: Array = []
@@ -21,6 +22,7 @@ var current_mode := "Workloads"
 var cached_group_slots := []
 var cached_node_slots := []
 var pulse := 0.0
+var redraw_accumulator := 0.0
 
 
 func _ready() -> void:
@@ -47,7 +49,13 @@ func _notification(what: int) -> void:
 
 
 func _process(delta: float) -> void:
+	if not is_visible_in_tree():
+		return
 	pulse += delta
+	redraw_accumulator += delta
+	if redraw_accumulator < REDRAW_INTERVAL:
+		return
+	redraw_accumulator = 0.0
 	queue_redraw()
 
 

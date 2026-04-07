@@ -13,6 +13,8 @@ const HOVER_GLOW := Color8(88, 240, 255, 255)
 const SELECTED_GLOW := Color8(148, 255, 248, 255)
 const WARM_GLOW := Color8(255, 183, 67, 255)
 
+static var _texture_cache := {}
+
 var _label_text := "BUTTON"
 var _hovered := false
 var _state_tween: Tween
@@ -166,12 +168,14 @@ func _apply_label_style(font_color: Color) -> void:
 
 
 func _load_png_texture(texture_path: String) -> Texture2D:
-	var image := Image.new()
-	var error := image.load(ProjectSettings.globalize_path(texture_path))
-	if error != OK:
+	if _texture_cache.has(texture_path):
+		return _texture_cache[texture_path]
+	var texture := load(texture_path) as Texture2D
+	if texture == null:
 		push_warning("Unable to load nav texture: %s" % texture_path)
 		return null
-	return ImageTexture.create_from_image(image)
+	_texture_cache[texture_path] = texture
+	return texture
 
 
 func _process(delta: float) -> void:

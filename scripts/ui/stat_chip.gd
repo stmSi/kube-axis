@@ -3,6 +3,8 @@ extends Control
 const BADGE_FRAME_PATH := "res://assets/ui/status_badge_frame.png"
 const TEXT := Color8(226, 244, 255, 255)
 
+static var _texture_cache := {}
+
 var _text := ""
 var _font_color := TEXT
 
@@ -34,9 +36,11 @@ func _ready() -> void:
 
 
 func _load_png_texture(texture_path: String) -> Texture2D:
-	var image := Image.new()
-	var error := image.load(ProjectSettings.globalize_path(texture_path))
-	if error != OK:
+	if _texture_cache.has(texture_path):
+		return _texture_cache[texture_path]
+	var texture := load(texture_path) as Texture2D
+	if texture == null:
 		push_warning("Unable to load badge texture: %s" % texture_path)
 		return null
-	return ImageTexture.create_from_image(image)
+	_texture_cache[texture_path] = texture
+	return texture
