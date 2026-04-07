@@ -182,11 +182,11 @@ text = "MEM 0%"
 custom_minimum_size = Vector2(320, 72)
 script = ExtResource("2_chrome")
 fill_color = Color(0.08, 0.13, 0.2, 0.96)
-accent_color = Color(1, 0.717647, 0.262745, 0.84)
+accent_color = Color(0.345098, 0.941176, 1, 0.84)
 trim_color = Color(0.156863, 0.376471, 0.486275, 0.8)
 glow_color = Color(1, 0.717647, 0.262745, 1)
 emphasize_right = true
-frame_texture_path = "res://assets/ui/panel_frame_orange.png"
+frame_texture_path = "res://assets/ui/panel_frame_cyan.png"
 frame_patch_margin = 30
 
 [node name="ActionMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/ActionPanel"]
@@ -299,6 +299,14 @@ autowrap_mode = 3
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 12
 
+[node name="ImportKubeconfigButton" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body" instance=ExtResource("10_action")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+label_text = "IMPORT CONFIG"
+hover_glow_color = Color(0.345098, 0.941176, 1, 1)
+pressed_glow_color = Color(0.509804, 1, 0.780392, 1)
+
 [node name="NavigationPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
 script = ExtResource("3_section")
 section_title = "Navigation"
@@ -384,7 +392,7 @@ label_text = "ACCESS"
 size_flags_vertical = 3
 script = ExtResource("3_section")
 section_title = "Flight Telemetry"
-section_accent_color = Color(1, 0.717647, 0.262745, 1)
+section_accent_color = Color(0.345098, 0.941176, 1, 1)
 
 [node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel"]
 layout_mode = 1
@@ -855,3 +863,13 @@ layout_mode = 2
 autowrap_mode = 3
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
 theme_override_font_sizes/font_size = 13
+
+[node name="KubeconfigDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+visible = false
+title = "Select kubeconfig"
+size = Vector2i(960, 640)
+access = 2
+file_mode = 0
+use_native_dialog = true
+filters = PackedStringArray("*.yaml ; Kubeconfig YAML", "*.yml ; Kubeconfig YAML", "*.conf ; Config", "* ; All files")

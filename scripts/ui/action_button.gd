@@ -14,6 +14,10 @@ var _label_text := "ACTION"
 var _hovered := false
 var _pressing := false
 var _state_tween: Tween
+var _sweep_active := false
+var _sweep_phase := 0.0
+var _sweep_speed := 0.0
+var _sweep_strength := 0.0
 var _idle_texture: Texture2D
 var _active_texture: Texture2D
 
@@ -32,6 +36,7 @@ var _active_texture: Texture2D
 
 func _ready() -> void:
 	focus_mode = Control.FOCUS_NONE
+	clip_contents = true
 	if custom_minimum_size == Vector2.ZERO:
 		custom_minimum_size = Vector2(132.0, 40.0)
 	_idle_texture = _load_png_texture(IDLE_PATH)
@@ -42,10 +47,14 @@ func _ready() -> void:
 	var add_material := CanvasItemMaterial.new()
 	add_material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 	$Glow.material = add_material
+	var sweep_material := CanvasItemMaterial.new()
+	sweep_material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+	$SweepGlow.material = sweep_material
 	$Label.add_theme_font_size_override("font_size", 13)
 	$LabelShadow.add_theme_font_size_override("font_size", 13)
 	_apply_label_text()
 	_apply_label_style(TEXT)
+	set_process(false)
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	button_down.connect(_on_button_down)
@@ -81,8 +90,10 @@ func _sync_visual_state() -> void:
 		return
 	if _hovered:
 		_animate_state(0.76, 0.18, hover_glow_color, 0.8, 0.0, 1.0, TEXT_HOVER, 0.0)
+		_set_sweep_active(true, 128.0, 0.24, hover_glow_color)
 	else:
 		_animate_state(0.0, 0.0, hover_glow_color, 0.0, 0.0, 1.0, TEXT, 0.0)
+		_set_sweep_active(false, 0.0, 0.0, hover_glow_color)
 
 
 func _animate_state(active_alpha: float, glow_alpha: float, glow_color: Color, line_alpha: float, warm_alpha: float, target_scale: float, font_color: Color, label_offset_y: float) -> void:
@@ -107,6 +118,7 @@ func _animate_state(active_alpha: float, glow_alpha: float, glow_color: Color, l
 
 func _update_pivots() -> void:
 	$Glow.pivot_offset = $Glow.size * 0.5
+	_update_sweep_geometry()
 
 
 func _apply_label_text() -> void:
@@ -127,3 +139,45 @@ func _load_png_texture(texture_path: String) -> Texture2D:
 		push_warning("Unable to load action texture: %s" % texture_path)
 		return null
 	return ImageTexture.create_from_image(image)
+
+
+func _process(delta: float) -> void:
+	if not _sweep_active and $SweepGlow.modulate.a <= 0.01 and $SweepCore.modulate.a <= 0.01:
+		set_process(false)
+		return
+
+	var lane_start: float = 16.0
+	var lane_end: float = maxf(size.x - 36.0, lane_start + 1.0)
+	var travel: float = lane_end - lane_start + 34.0
+	if not _sweep_active:
+		$SweepGlow.modulate.a = move_toward($SweepGlow.modulate.a, 0.0, delta * 4.5)
+		$SweepCore.modulate.a = move_toward($SweepCore.modulate.a, 0.0, delta * 6.0)
+		return
+
+	_sweep_phase = wrapf(_sweep_phase + delta * _sweep_speed, 0.0, travel)
+	var normalized: float = _sweep_phase / travel
+	var envelope: float = sin(normalized * PI)
+	var x: float = lane_start - 24.0 + _sweep_phase
+	$SweepGlow.position.x = x
+	$SweepCore.position.x = x + 8.0
+	$SweepGlow.modulate.a = _sweep_strength * envelope
+	$SweepCore.modulate.a = min(_sweep_strength + 0.18, 0.72) * envelope
+
+
+func _set_sweep_active(active: bool, speed: float, strength: float, glow_color: Color) -> void:
+	_sweep_active = active
+	_sweep_speed = speed
+	_sweep_strength = strength
+	$SweepGlow.color = glow_color
+	$SweepCore.color = Color(0.88, 0.98, 1.0, 1.0)
+	if active:
+		_sweep_phase = 0.0
+		_update_sweep_geometry()
+		set_process(true)
+	elif $SweepGlow.modulate.a > 0.01 or $SweepCore.modulate.a > 0.01:
+		set_process(true)
+
+
+func _update_sweep_geometry() -> void:
+	$SweepGlow.position = Vector2(-28.0, 6.0)
+	$SweepCore.position = Vector2(-18.0, 8.0)

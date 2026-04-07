@@ -21,9 +21,9 @@
     <path d="M20 2 H317 L334 19 V38 L317 54 H20 L2 38 V19 Z" fill="url(#bg_active)" stroke="#87ffbf" stroke-width="2"/>
     <path d="M3 3 H126 L140 15 H317 L333 31 V38 L317 54 H20 L2 38 V19 Z" fill="url(#wash)"/>
     <path d="M28 9 H307 L323 23 V34 L307 47 H28 L13 34 V23 Z" fill="none" stroke="#4f8378" stroke-width="1"/>
-    <path d="M28 14 H270" stroke="#87ffbf" stroke-width="1.8"/>
-    <path d="M272 14 H304" stroke="#ffb13c" stroke-width="2"/>
-    <path d="M28 44 H210" stroke="#58ecff" stroke-width="1" stroke-opacity="0.5"/>
+    <path d="M28 9 H270" stroke="#87ffbf" stroke-width="1.8"/>
+    <path d="M272 9 H304" stroke="#ffb13c" stroke-width="2"/>
+    <path d="M28 41 H210" stroke="#58ecff" stroke-width="1" stroke-opacity="0.42"/>
     <g>
       <path d="M26 28 L36 18 H52 L62 28 L52 38 H36 Z" fill="#143830" stroke="#9cffcd" stroke-width="1.4"/>
       <circle cx="44" cy="28" r="8.5" fill="#88ffc1" fill-opacity="0.18"/>

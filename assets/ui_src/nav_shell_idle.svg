@@ -30,16 +30,16 @@
       stroke="#24475d"
       stroke-width="1"/>
     <path
-      d="M66 14 H298"
+      d="M66 9 H298"
       stroke="url(#edge)"
       stroke-width="1.8"/>
     <path
-      d="M66 19 H281"
+      d="M66 14 H281"
       stroke="#33566d"
       stroke-opacity="0.5"
       stroke-width="1"/>
     <path
-      d="M278 14 H304"
+      d="M278 9 H304"
       stroke="#ffb13c"
       stroke-width="1.8"
       stroke-opacity="0.95"/>

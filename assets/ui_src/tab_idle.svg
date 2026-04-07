@@ -2,13 +2,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="42" viewBox="0 0 180 42" version="1.1">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0a151f"/>
-      <stop offset="100%" stop-color="#0f1a25"/>
+      <stop offset="0%" stop-color="#09131c"/>
+      <stop offset="100%" stop-color="#0d1720"/>
     </linearGradient>
   </defs>
   <g>
-    <path d="M10 2 H168 L178 13 V31 L168 40 H10 L2 33 V10 Z" fill="url(#bg)" stroke="#315a74" stroke-opacity="0.84" stroke-width="2"/>
-    <path d="M18 8 H158 L168 17 V27 L158 34 H18 L11 28 V14 Z" fill="none" stroke="#223d50" stroke-width="1"/>
-    <path d="M24 11 H140" stroke="#315a74" stroke-opacity="0.55" stroke-width="1.4"/>
+    <path d="M10 2 H168 L178 13 V31 L168 40 H10 L2 33 V10 Z" fill="url(#bg)" stroke="#315a74" stroke-opacity="0.78" stroke-width="1.8"/>
+    <path d="M18 8 H158 L168 17 V27 L158 34 H18 L11 28 V14 Z" fill="none" stroke="#223846" stroke-width="1"/>
   </g>
 </svg>

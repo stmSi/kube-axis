@@ -35,7 +35,10 @@ var metric_history := {
 
 
 func _ready() -> void:
-	DisplayServer.window_set_min_size(Vector2i(1180, 680))
+	var window := get_window()
+	window.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
+	window.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_IGNORE
+	DisplayServer.window_set_min_size(Vector2i(960, 600))
 	theme = _build_theme()
 	_cache_ui_refs()
 	_connect_static_controls()
@@ -55,25 +58,18 @@ func _exit_tree() -> void:
 func _draw() -> void:
 	var rect := get_rect()
 	draw_rect(rect, BG_TOP, true)
-	var bands := 8
+	var bands := 6
 	for index in range(bands):
 		var height := rect.size.y / float(bands)
 		var band_rect := Rect2(0.0, height * index, rect.size.x, height)
 		var blend := float(index) / float(max(bands - 1, 1))
 		var band_color := BG_TOP.lerp(BG_BOTTOM, blend)
-		band_color.a = 0.7
+		band_color.a = 0.86
 		draw_rect(band_rect, band_color, true)
-	var x := 0.0
-	while x < rect.size.x:
-		draw_line(Vector2(x, 0.0), Vector2(x, rect.size.y), Color(0.12, 0.24, 0.3, 0.08), 1.0)
-		x += 44.0
-	var y := 0.0
-	while y < rect.size.y:
-		draw_line(Vector2(0.0, y), Vector2(rect.size.x, y), Color(0.12, 0.24, 0.3, 0.06), 1.0)
-		y += 44.0
+	draw_rect(Rect2(0.0, 0.0, rect.size.x, 82.0), Color(0.03, 0.08, 0.13, 0.72), true)
+	draw_rect(Rect2(0.0, rect.size.y - 110.0, rect.size.x, 110.0), Color(0.01, 0.03, 0.06, 0.22), true)
 	_draw_shell_frame(rect)
 	_draw_top_rulers(rect)
-	_draw_corner_energy(rect)
 
 
 func _notification(what: int) -> void:
@@ -93,6 +89,8 @@ func _cache_ui_refs() -> void:
 	ui.context_buttons = %ContextsButtons
 	ui.namespace_option = %NamespaceOption
 	ui.mode_hint = %ModeHint
+	ui.import_kubeconfig_button = %ImportKubeconfigButton
+	ui.kubeconfig_dialog = %KubeconfigDialog
 	ui.telemetry_summary = %TelemetrySummary
 	ui.telemetry_spark = %TelemetrySpark
 	ui.telemetry_footer = %TelemetryFooter
@@ -134,6 +132,8 @@ func _cache_ui_refs() -> void:
 func _connect_static_controls() -> void:
 	ui.refresh_button.pressed.connect(_refresh_dashboard)
 	ui.namespace_option.item_selected.connect(_on_namespace_selected)
+	ui.import_kubeconfig_button.pressed.connect(_on_import_kubeconfig_pressed)
+	ui.kubeconfig_dialog.file_selected.connect(_on_kubeconfig_file_selected)
 	ui.cluster_map.group_selected.connect(_on_group_selected)
 	ui.detail_tabs.tab_changed.connect(_on_detail_tab_changed)
 	ui.exec_button.pressed.connect(_on_exec_shell_pressed)
@@ -148,44 +148,27 @@ func _connect_static_controls() -> void:
 
 
 func _draw_shell_frame(rect: Rect2) -> void:
-	var frame := _bevel_points(rect.grow(-4.0), 26.0)
-	_draw_polyline(frame, Color(ACCENT.r, ACCENT.g, ACCENT.b, 0.12), 8.0)
-	_draw_polyline(frame, Color(BORDER.r, BORDER.g, BORDER.b, 0.92), 2.0)
-	var inner := _bevel_points(rect.grow(-12.0), 18.0)
-	_draw_polyline(inner, Color(BORDER_SOFT.r, BORDER_SOFT.g, BORDER_SOFT.b, 0.75), 1.0)
+	var frame := _bevel_points(rect.grow(-5.0), 20.0)
+	_draw_polyline(frame, Color(BORDER.r, BORDER.g, BORDER.b, 0.34), 1.5)
+	var inner := _bevel_points(rect.grow(-11.0), 14.0)
+	_draw_polyline(inner, Color(BORDER_SOFT.r, BORDER_SOFT.g, BORDER_SOFT.b, 0.2), 1.0)
 
 
 func _draw_top_rulers(rect: Rect2) -> void:
 	var y := 18.0
-	var start_x := 340.0
-	var end_x := rect.size.x - 168.0
-	draw_line(Vector2(start_x, y), Vector2(end_x, y), Color(BORDER_SOFT.r, BORDER_SOFT.g, BORDER_SOFT.b, 0.55), 1.0)
-	draw_line(Vector2(start_x, y), Vector2(start_x + 120.0, y), ACCENT, 2.0)
-	draw_line(Vector2(end_x - 160.0, y), Vector2(end_x, y), Color(ACCENT_WARM.r, ACCENT_WARM.g, ACCENT_WARM.b, 0.95), 2.0)
-	draw_line(Vector2(start_x + 70.0, y + 8.0), Vector2(end_x - 90.0, y + 8.0), Color(BORDER_SOFT.r, BORDER_SOFT.g, BORDER_SOFT.b, 0.22), 1.0)
-	var notch := PackedVector2Array([
-		Vector2(284.0, 12.0),
-		Vector2(308.0, 12.0),
-		Vector2(324.0, 28.0),
-		Vector2(300.0, 28.0),
-	])
-	draw_colored_polygon(notch, Color(0.12, 0.2, 0.29, 0.9))
-	_draw_polyline(notch, Color(BORDER_SOFT.r, BORDER_SOFT.g, BORDER_SOFT.b, 0.85), 1.0, false)
+	var start_x := 300.0
+	var end_x := rect.size.x - 112.0
+	draw_line(Vector2(start_x, y), Vector2(end_x, y), Color(BORDER_SOFT.r, BORDER_SOFT.g, BORDER_SOFT.b, 0.28), 1.0)
+	draw_line(Vector2(start_x, y), Vector2(start_x + 136.0, y), Color(ACCENT.r, ACCENT.g, ACCENT.b, 0.75), 2.0)
 	_draw_window_controls(rect)
 
 
 func _draw_window_controls(rect: Rect2) -> void:
-	var base_x := rect.size.x - 108.0
+	var base_x := rect.size.x - 104.0
 	var y := 18.0
-	draw_line(Vector2(base_x, y), Vector2(base_x + 12.0, y), TEXT_MUTED, 2.0)
-	draw_rect(Rect2(Vector2(base_x + 28.0, y - 6.0), Vector2(12.0, 12.0)), Color(TEXT_MUTED.r, TEXT_MUTED.g, TEXT_MUTED.b, 0.1), false, 2.0)
-	draw_rect(Rect2(Vector2(base_x + 58.0, y - 8.0), Vector2(14.0, 14.0)), Color(TEXT_MUTED.r, TEXT_MUTED.g, TEXT_MUTED.b, 0.1), false, 2.0)
-
-
-func _draw_corner_energy(rect: Rect2) -> void:
-	draw_line(Vector2(18.0, rect.size.y - 86.0), Vector2(18.0, rect.size.y - 34.0), Color(ACCENT_WARM.r, ACCENT_WARM.g, ACCENT_WARM.b, 0.65), 2.0)
-	draw_line(Vector2(rect.size.x - 18.0, rect.size.y * 0.33), Vector2(rect.size.x - 18.0, rect.size.y * 0.65), Color(ACCENT_WARM.r, ACCENT_WARM.g, ACCENT_WARM.b, 0.48), 2.0)
-	draw_line(Vector2(rect.size.x - 30.0, rect.size.y * 0.5), Vector2(rect.size.x - 18.0, rect.size.y * 0.5), ACCENT_WARM, 2.0)
+	draw_line(Vector2(base_x, y), Vector2(base_x + 10.0, y), Color(TEXT_MUTED.r, TEXT_MUTED.g, TEXT_MUTED.b, 0.88), 2.0)
+	draw_rect(Rect2(Vector2(base_x + 28.0, y - 5.0), Vector2(10.0, 10.0)), Color(TEXT_MUTED.r, TEXT_MUTED.g, TEXT_MUTED.b, 0.08), false, 1.5)
+	draw_rect(Rect2(Vector2(base_x + 54.0, y - 7.0), Vector2(12.0, 12.0)), Color(TEXT_MUTED.r, TEXT_MUTED.g, TEXT_MUTED.b, 0.08), false, 1.5)
 
 
 func _bevel_points(rect: Rect2, cut: float) -> PackedVector2Array:
@@ -281,6 +264,9 @@ func _update_summary() -> void:
 		"kubectl" if mode_name == "live" else "demo fixtures",
 		selected_namespace.to_upper(),
 	]
+	var kubeconfig_path := String(dashboard_state.get("kubeconfig_path", ""))
+	if not kubeconfig_path.is_empty():
+		ui.summary_meta.text += "  |  CFG %s" % kubeconfig_path.get_file().to_upper()
 	ui.summary_pods.text = "PODS %d" % _filtered_pods().size()
 	ui.summary_nodes.text = "NODES %d" % dashboard_state.get("nodes", []).size()
 	ui.summary_cpu.text = "CPU %.0f%%" % float(summary.get("cpu_percent", 0.0))
@@ -375,13 +361,49 @@ func _update_terminal_hint() -> void:
 
 func _update_mode_labels() -> void:
 	var mode_name := String(dashboard_state.get("mode", "demo"))
+	var kubeconfig_path := String(dashboard_state.get("kubeconfig_path", ""))
 	ui.mode_hint.text = String(dashboard_state.get("message", "")).to_upper()
+	if not kubeconfig_path.is_empty():
+		ui.mode_hint.text += "\nKUBECONFIG: %s" % kubeconfig_path
 	ui.telemetry_summary.text = "%s MODE ACTIVE. %d NODES VISIBLE WITH %d PODS IN SCOPE." % [
 		"LIVE" if mode_name == "live" else "DEMO",
 		dashboard_state.get("nodes", []).size(),
 		_filtered_pods().size(),
 	]
-	ui.telemetry_footer.text = "SCOPE: %s\nCONTEXT: %s\nNAV FOCUS: %s" % [selected_namespace.to_upper(), selected_context.to_upper(), selected_resource.to_upper()]
+	var kubeconfig_name := "DEFAULT"
+	if not kubeconfig_path.is_empty():
+		kubeconfig_name = kubeconfig_path.get_file()
+	ui.telemetry_footer.text = "SCOPE: %s\nCONTEXT: %s\nNAV FOCUS: %s\nKCFG: %s" % [
+		selected_namespace.to_upper(),
+		selected_context.to_upper(),
+		selected_resource.to_upper(),
+		kubeconfig_name.to_upper(),
+	]
+
+
+func _on_import_kubeconfig_pressed() -> void:
+	var last_path := client.get_kubeconfig_path()
+	if not last_path.is_empty():
+		ui.kubeconfig_dialog.current_path = last_path
+	else:
+		var home_dir := OS.get_environment("HOME")
+		if home_dir.is_empty():
+			home_dir = OS.get_environment("USERPROFILE")
+		if not home_dir.is_empty():
+			ui.kubeconfig_dialog.current_dir = home_dir
+	ui.kubeconfig_dialog.popup_centered_ratio(0.72)
+
+
+func _on_kubeconfig_file_selected(kubeconfig_path: String) -> void:
+	var result: Dictionary = client.import_kubeconfig(kubeconfig_path)
+	if not bool(result.get("ok", false)):
+		_set_status(String(result.get("message", "Unable to import kubeconfig.")))
+		return
+	selected_context = ""
+	selected_namespace = ALL_NAMESPACES
+	selected_group_key = ""
+	_set_status(String(result.get("message", "Kubeconfig imported.")))
+	_refresh_dashboard()
 
 
 func _on_context_selected(context_name: String) -> void:

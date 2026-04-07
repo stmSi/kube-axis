@@ -2,11 +2,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="320" viewBox="0 0 512 320" version="1.1">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0c1928"/>
-      <stop offset="100%" stop-color="#09131d"/>
+      <stop offset="0%" stop-color="#0b1723"/>
+      <stop offset="100%" stop-color="#08121a"/>
     </linearGradient>
-    <filter id="glow" x="-12%" y="-12%" width="124%" height="124%">
-      <feGaussianBlur stdDeviation="4.5" result="blur"/>
+    <filter id="halo" x="-8%" y="-8%" width="116%" height="116%">
+      <feGaussianBlur stdDeviation="2.8" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -14,20 +14,9 @@
     </filter>
   </defs>
   <g>
-    <path d="M28 2 H485 L510 27 V292 L485 318 H28 L2 292 V27 Z" fill="url(#bg)" stroke="#53e4ff" stroke-opacity="0.84" stroke-width="2" filter="url(#glow)"/>
-    <path d="M38 12 H474 L500 38 V282 L474 308 H38 L12 282 V38 Z" fill="none" stroke="#244a61" stroke-width="1"/>
-    <path d="M50 18 H458" stroke="#53e4ff" stroke-width="2"/>
-    <path d="M405 18 H458" stroke="#ffb13c" stroke-width="2"/>
-    <path d="M50 24 H430" stroke="#244a61" stroke-opacity="0.5" stroke-width="1"/>
-    <path d="M22 40 H46" stroke="#53e4ff" stroke-width="1.5"/>
-    <path d="M22 40 V64" stroke="#53e4ff" stroke-width="1.5"/>
-    <path d="M490 40 H466" stroke="#3a647b" stroke-width="1.5"/>
-    <path d="M490 40 V64" stroke="#3a647b" stroke-width="1.5"/>
-    <path d="M22 280 H46" stroke="#315d76" stroke-opacity="0.7" stroke-width="1.5"/>
-    <path d="M22 280 V256" stroke="#315d76" stroke-opacity="0.7" stroke-width="1.5"/>
-    <path d="M490 280 H466" stroke="#ffb13c" stroke-width="1.5"/>
-    <path d="M490 280 V256" stroke="#ffb13c" stroke-width="1.5"/>
-    <path d="M482 116 V204" stroke="#ffb13c" stroke-opacity="0.82" stroke-width="2"/>
-    <path d="M468 160 H482" stroke="#ffb13c" stroke-width="2"/>
+    <path d="M24 2 H488 L510 24 V296 L488 318 H24 L2 296 V24 Z" fill="url(#bg)" stroke="#53e4ff" stroke-opacity="0.48" stroke-width="1.8" filter="url(#halo)"/>
+    <path d="M34 12 H478 L500 34 V286 L478 308 H34 L12 286 V34 Z" fill="none" stroke="#1d3443" stroke-opacity="0.95" stroke-width="1"/>
+    <path d="M42 18 H152" stroke="#53e4ff" stroke-opacity="0.84" stroke-width="2"/>
+    <path d="M42 24 H442" stroke="#1f3746" stroke-opacity="0.46" stroke-width="1"/>
   </g>
 </svg>

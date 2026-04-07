@@ -20,9 +20,9 @@
   <g id="button_nav_frame_idle">
     <path d="M20 2 H317 L334 19 V38 L317 54 H20 L2 38 V19 Z" fill="url(#bg)" stroke="#53d6ff" stroke-opacity="0.7" stroke-width="2"/>
     <path d="M28 9 H307 L323 23 V34 L307 47 H28 L13 34 V23 Z" fill="none" stroke="#24475d" stroke-width="1"/>
-    <path d="M31 14 H298" stroke="url(#edge)" stroke-width="1.8"/>
-    <path d="M31 19 H281" stroke="#33566d" stroke-opacity="0.5" stroke-width="1"/>
-    <path d="M278 14 H304" stroke="#ffb13c" stroke-width="1.8" stroke-opacity="0.95"/>
+    <path d="M31 9 H298" stroke="url(#edge)" stroke-width="1.8"/>
+    <path d="M31 14 H281" stroke="#33566d" stroke-opacity="0.5" stroke-width="1"/>
+    <path d="M278 9 H304" stroke="#ffb13c" stroke-width="1.8" stroke-opacity="0.95"/>
     <g>
       <path d="M26 28 L36 18 H52 L62 28 L52 38 H36 Z" fill="#0b2230" stroke="#57e7ff" stroke-width="1.4"/>
       <path d="M44 19 V37" stroke="#57e7ff" stroke-width="1.2" stroke-opacity="0.7"/>

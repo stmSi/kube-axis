@@ -79,6 +79,28 @@ grow_horizontal = 0
 color = Color(1, 0.717647, 0.262745, 1)
 mouse_filter = 2
 
+[node name="SweepGlow" type="ColorRect" parent="."]
+modulate = Color(0.345098, 0.941176, 1, 0)
+layout_mode = 1
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 38.0
+offset_bottom = 12.0
+mouse_filter = 2
+z_index = 1
+color = Color(0.345098, 0.941176, 1, 1)
+
+[node name="SweepCore" type="ColorRect" parent="."]
+modulate = Color(0.345098, 0.941176, 1, 0)
+layout_mode = 1
+offset_left = 18.0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 10.0
+mouse_filter = 2
+z_index = 2
+color = Color(0.85098, 0.992157, 1, 1)
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15

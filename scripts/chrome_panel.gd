@@ -45,21 +45,19 @@ func _draw() -> void:
 
 	var outer := _bevel_points(rect.grow(-1.0), cut)
 	draw_colored_polygon(outer, fill_color)
-	_draw_outline(outer, Color(accent_color.r, accent_color.g, accent_color.b, 0.12), 7.0)
-	_draw_outline(outer, accent_color, 2.0)
+	_draw_outline(outer, Color(accent_color.r, accent_color.g, accent_color.b, 0.22), 1.5)
 
 	var inner_rect := rect.grow(-7.0)
 	if inner_rect.size.x > 20.0 and inner_rect.size.y > 20.0:
 		var inner := _bevel_points(inner_rect, max(cut - 6.0, 6.0))
-		_draw_outline(inner, trim_color, 1.0)
+		_draw_outline(inner, Color(trim_color.r, trim_color.g, trim_color.b, 0.32), 1.0)
 		if show_inner_frame:
 			var inset_rect := rect.grow(-13.0)
 			if inset_rect.size.x > 20.0 and inset_rect.size.y > 20.0:
 				var inset := _bevel_points(inset_rect, max(cut - 11.0, 4.0))
-				_draw_outline(inset, Color(trim_color.r, trim_color.g, trim_color.b, 0.36), 1.0)
+				_draw_outline(inset, Color(trim_color.r, trim_color.g, trim_color.b, 0.16), 1.0)
 
 	_draw_top_track(rect, cut)
-	_draw_corner_ticks(rect, cut)
 	if emphasize_right:
 		_draw_right_emitter(rect)
 
@@ -87,32 +85,15 @@ func _draw_top_track(rect: Rect2, cut: float) -> void:
 	var y := rect.position.y + (10.0 if compact else 14.0)
 	var left_x := rect.position.x + cut + 10.0
 	var right_x := rect.end.x - cut - 10.0
-	draw_line(Vector2(left_x, y), Vector2(right_x, y), Color(trim_color.r, trim_color.g, trim_color.b, 0.55), 1.0)
-	draw_line(Vector2(left_x, y), Vector2(min(left_x + rect.size.x * 0.26, right_x), y), accent_color, 2.0)
-	draw_line(Vector2(max(right_x - rect.size.x * 0.12, left_x), y), Vector2(right_x, y), glow_color, 2.0)
-	if not compact:
-		draw_line(Vector2(left_x + 22.0, y + 6.0), Vector2(right_x - 26.0, y + 6.0), Color(trim_color.r, trim_color.g, trim_color.b, 0.18), 1.0)
-
-
-func _draw_corner_ticks(rect: Rect2, cut: float) -> void:
-	var tick := 18.0 if compact else 24.0
-	var inset := 8.0
-	draw_line(Vector2(rect.position.x + inset, rect.position.y + cut + inset), Vector2(rect.position.x + inset + tick, rect.position.y + cut + inset), accent_color, 1.5)
-	draw_line(Vector2(rect.position.x + inset, rect.position.y + cut + inset), Vector2(rect.position.x + inset, rect.position.y + cut + inset + tick), accent_color, 1.5)
-	draw_line(Vector2(rect.end.x - inset, rect.position.y + cut + inset), Vector2(rect.end.x - inset - tick, rect.position.y + cut + inset), Color(trim_color.r, trim_color.g, trim_color.b, 0.8), 1.5)
-	draw_line(Vector2(rect.end.x - inset, rect.position.y + cut + inset), Vector2(rect.end.x - inset, rect.position.y + cut + inset + tick), Color(trim_color.r, trim_color.g, trim_color.b, 0.8), 1.5)
-	draw_line(Vector2(rect.position.x + inset, rect.end.y - cut - inset), Vector2(rect.position.x + inset + tick, rect.end.y - cut - inset), Color(trim_color.r, trim_color.g, trim_color.b, 0.55), 1.5)
-	draw_line(Vector2(rect.position.x + inset, rect.end.y - cut - inset), Vector2(rect.position.x + inset, rect.end.y - cut - inset - tick), Color(trim_color.r, trim_color.g, trim_color.b, 0.55), 1.5)
-	draw_line(Vector2(rect.end.x - inset, rect.end.y - cut - inset), Vector2(rect.end.x - inset - tick, rect.end.y - cut - inset), glow_color, 1.5)
-	draw_line(Vector2(rect.end.x - inset, rect.end.y - cut - inset), Vector2(rect.end.x - inset, rect.end.y - cut - inset - tick), glow_color, 1.5)
+	draw_line(Vector2(left_x, y), Vector2(right_x, y), Color(trim_color.r, trim_color.g, trim_color.b, 0.22), 1.0)
+	draw_line(Vector2(left_x, y), Vector2(min(left_x + rect.size.x * 0.22, right_x), y), Color(accent_color.r, accent_color.g, accent_color.b, 0.82), 2.0)
 
 
 func _draw_right_emitter(rect: Rect2) -> void:
-	var x := rect.end.x - 6.0
-	var top_y := rect.position.y + rect.size.y * 0.34
-	var bottom_y := rect.position.y + rect.size.y * 0.64
-	draw_line(Vector2(x, top_y), Vector2(x, bottom_y), Color(glow_color.r, glow_color.g, glow_color.b, 0.85), 2.0)
-	draw_line(Vector2(x - 10.0, rect.position.y + rect.size.y * 0.50), Vector2(x, rect.position.y + rect.size.y * 0.50), glow_color, 2.0)
+	var x := rect.end.x - 8.0
+	var top_y := rect.position.y + rect.size.y * 0.42
+	var bottom_y := rect.position.y + rect.size.y * 0.58
+	draw_line(Vector2(x, top_y), Vector2(x, bottom_y), Color(accent_color.r, accent_color.g, accent_color.b, 0.5), 2.0)
 
 
 func _get_frame_texture() -> Texture2D:

@@ -55,10 +55,9 @@ func _draw() -> void:
 	var rect := get_rect().grow(-8.0)
 	var frame := _bevel_points(rect, 22.0)
 	draw_colored_polygon(frame, BACKDROP)
-	_draw_outline(frame, Color(0.24, 0.74, 0.94, 0.10), 8.0)
-	_draw_outline(frame, Color(0.24, 0.74, 0.94, 0.72), 2.0)
+	_draw_outline(frame, Color(0.24, 0.74, 0.94, 0.18), 1.5)
 	var inner := _bevel_points(rect.grow(-10.0), 14.0)
-	_draw_outline(inner, Color(0.18, 0.38, 0.5, 0.64), 1.0)
+	_draw_outline(inner, Color(0.18, 0.38, 0.5, 0.26), 1.0)
 	_draw_header_strip(rect)
 	_draw_grid(rect.grow(-14.0))
 	_draw_orbit_markers(rect)
@@ -69,23 +68,23 @@ func _draw() -> void:
 func _draw_grid(rect: Rect2) -> void:
 	var x := rect.position.x
 	while x < rect.end.x:
-		draw_line(Vector2(x, rect.position.y), Vector2(x, rect.end.y), Color(0.06, 0.16, 0.22, 0.1), 1.0)
-		x += 36.0
+		draw_line(Vector2(x, rect.position.y), Vector2(x, rect.end.y), Color(0.06, 0.16, 0.22, 0.05), 1.0)
+		x += 48.0
 	var y := rect.position.y
 	while y < rect.end.y:
-		draw_line(Vector2(rect.position.x, y), Vector2(rect.end.x, y), Color(0.06, 0.16, 0.22, 0.1), 1.0)
-		y += 36.0
+		draw_line(Vector2(rect.position.x, y), Vector2(rect.end.x, y), Color(0.06, 0.16, 0.22, 0.05), 1.0)
+		y += 48.0
 
 
 func _draw_header_strip(rect: Rect2) -> void:
 	var top_rect := Rect2(rect.position + Vector2(14.0, 12.0), Vector2(rect.size.x - 28.0, 28.0))
 	draw_rect(top_rect, Color(0.05, 0.11, 0.18, 0.92), true)
-	draw_rect(top_rect, Color(0.19, 0.44, 0.58, 0.85), false, 1.0)
-	draw_line(top_rect.position + Vector2(8.0, 8.0), top_rect.position + Vector2(top_rect.size.x - 76.0, 8.0), Color(0.26, 0.78, 1.0, 0.42), 1.0)
-	draw_line(top_rect.position + Vector2(8.0, 14.0), top_rect.position + Vector2(top_rect.size.x - 130.0, 14.0), Color(1.0, 0.66, 0.2, 0.3), 2.0)
+	draw_rect(top_rect, Color(0.19, 0.44, 0.58, 0.42), false, 1.0)
+	draw_line(top_rect.position + Vector2(8.0, 10.0), top_rect.position + Vector2(top_rect.size.x - 90.0, 10.0), Color(0.26, 0.78, 1.0, 0.28), 1.0)
+	draw_line(top_rect.position + Vector2(8.0, 15.0), top_rect.position + Vector2(top_rect.size.x - 140.0, 15.0), Color(1.0, 0.66, 0.2, 0.14), 1.0)
 	var marker_x := top_rect.position.x + top_rect.size.x * 0.56
-	draw_circle(Vector2(marker_x, top_rect.position.y + 14.0), 6.0, Color(1.0, 0.68, 0.2, 0.8))
-	draw_circle(Vector2(marker_x, top_rect.position.y + 14.0), 12.0, Color(1.0, 0.68, 0.2, 0.16))
+	draw_circle(Vector2(marker_x, top_rect.position.y + 14.0), 5.0, Color(1.0, 0.68, 0.2, 0.7))
+	draw_circle(Vector2(marker_x, top_rect.position.y + 14.0), 10.0, Color(1.0, 0.68, 0.2, 0.1))
 	var font := ThemeDB.fallback_font
 	draw_string(font, top_rect.position + Vector2(12.0, 22.0), "NAV FOCUS // %s" % current_mode.to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1.0, 13, TEXT_MUTED)
 	draw_string(font, top_rect.position + Vector2(top_rect.size.x - 56.0, 22.0), "NOW", HORIZONTAL_ALIGNMENT_LEFT, -1.0, 12, TEXT_MUTED)
@@ -93,28 +92,28 @@ func _draw_header_strip(rect: Rect2) -> void:
 
 func _draw_orbit_markers(rect: Rect2) -> void:
 	var center := rect.get_center()
-	for index in range(12):
-		var angle := pulse * 0.15 + TAU * float(index) / 12.0
-		var point: Vector2 = center + Vector2.from_angle(angle) * (min(rect.size.x, rect.size.y) * 0.32)
-		draw_circle(point, 2.0, Color(0.3, 0.95, 1.0, 0.4))
 	for index in range(8):
-		var angle := -pulse * 0.18 + TAU * float(index) / 8.0
+		var angle := pulse * 0.15 + TAU * float(index) / 8.0
+		var point: Vector2 = center + Vector2.from_angle(angle) * (min(rect.size.x, rect.size.y) * 0.32)
+		draw_circle(point, 2.0, Color(0.3, 0.95, 1.0, 0.24))
+	for index in range(5):
+		var angle := -pulse * 0.18 + TAU * float(index) / 5.0
 		var point: Vector2 = center + Vector2.from_angle(angle) * (min(rect.size.x, rect.size.y) * 0.22)
-		draw_circle(point, 2.0, Color(1.0, 0.66, 0.2, 0.28))
+		draw_circle(point, 2.0, Color(1.0, 0.66, 0.2, 0.18))
 
 
 func _draw_core(rect: Rect2) -> void:
 	var center := rect.get_center()
 	var base_radius: float = min(rect.size.x, rect.size.y) * 0.16
-	for ring_index in range(4):
+	for ring_index in range(3):
 		var radius: float = base_radius + ring_index * 56.0
 		var alpha := 0.17 - ring_index * 0.025 + sin(pulse * 1.2 + float(ring_index)) * 0.02
 		draw_arc(center, radius, 0.0, TAU, 72, Color(0.3, 0.9, 1.0, clamp(alpha, 0.04, 0.22)), 2.0, true)
-	for ring_index in range(3):
+	for ring_index in range(2):
 		var spin_radius: float = base_radius + 24.0 + ring_index * 82.0
 		var start_angle := pulse * 0.35 + ring_index * 0.8
 		var end_angle := start_angle + PI * 0.95
-		draw_arc(center, spin_radius, start_angle, end_angle, 36, Color(1.0, 0.66, 0.2, 0.20), 2.0, true)
+		draw_arc(center, spin_radius, start_angle, end_angle, 36, Color(1.0, 0.66, 0.2, 0.14), 2.0, true)
 	var points := PackedVector2Array()
 	for index in range(6):
 		var angle := TAU * float(index) / 6.0 - PI * 0.5
@@ -128,22 +127,22 @@ func _draw_core(rect: Rect2) -> void:
 	var font_size := 18
 	draw_string(font, center + Vector2(-58, -10), "CLUSTER CORE", HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size, TEXT)
 	draw_string(font, center + Vector2(-44, 14), "K8S TOPOLOGY", HORIZONTAL_ALIGNMENT_LEFT, -1.0, 14, TEXT_MUTED)
-	draw_arc(center, 106.0, -PI * 0.8, PI * 0.05, 28, Color(1.0, 0.66, 0.2, 0.25), 3.0, true)
-	draw_arc(center, 106.0, PI * 0.2, PI * 0.85, 28, Color(0.24, 0.78, 1.0, 0.24), 3.0, true)
+	draw_arc(center, 106.0, -PI * 0.8, PI * 0.05, 28, Color(1.0, 0.66, 0.2, 0.16), 2.0, true)
+	draw_arc(center, 106.0, PI * 0.2, PI * 0.85, 28, Color(0.24, 0.78, 1.0, 0.16), 2.0, true)
 
 
 func _draw_connections(rect: Rect2) -> void:
 	var center := rect.get_center()
 	for node_slot in cached_node_slots:
 		var node_point: Vector2 = node_slot.position
-		draw_line(center, node_point, Color(0.26, 0.78, 1.0, 0.22), 2.0)
+		draw_line(center, node_point, Color(0.26, 0.78, 1.0, 0.16), 2.0)
 	for group_slot in cached_group_slots:
 		var group_point: Vector2 = group_slot.position
-		draw_line(center, group_point, Color(0.93, 0.65, 0.2, 0.28), 2.0)
+		draw_line(center, group_point, Color(0.93, 0.65, 0.2, 0.18), 2.0)
 		for node_name in group_slot.nodes:
 			for node_slot in cached_node_slots:
 				if node_slot.name == node_name:
-					draw_line(group_point, node_slot.position, Color(0.3, 1.0, 0.7, 0.23), 2.0)
+					draw_line(group_point, node_slot.position, Color(0.3, 1.0, 0.7, 0.16), 2.0)
 					break
 
 

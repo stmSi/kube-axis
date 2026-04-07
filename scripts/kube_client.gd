@@ -2,6 +2,45 @@ extends RefCounted
 
 const DEMO_CONTEXTS := ["prod-cluster", "dev-cluster", "test-cluster"]
 const DEMO_NAMESPACES := ["default", "payments", "platform", "monitoring"]
+const SETTINGS_FILE := "user://kube_axis.cfg"
+const SETTINGS_SECTION := "kube"
+const SETTINGS_KEY_KUBECONFIG := "kubeconfig_path"
+
+var _kubeconfig_path := ""
+
+
+func _init() -> void:
+	_load_saved_kubeconfig()
+
+
+func import_kubeconfig(kubeconfig_path: String) -> Dictionary:
+	var trimmed_path := kubeconfig_path.strip_edges()
+	if trimmed_path.is_empty():
+		return {
+			"ok": false,
+			"message": "No kubeconfig file selected.",
+		}
+	if not FileAccess.file_exists(trimmed_path):
+		return {
+			"ok": false,
+			"message": "Selected kubeconfig file does not exist.",
+		}
+	_kubeconfig_path = trimmed_path
+	OS.set_environment("KUBECONFIG", _kubeconfig_path)
+	var save_error := _save_kubeconfig()
+	if save_error != OK:
+		return {
+			"ok": true,
+			"message": "Kubeconfig loaded for this session, but persistence failed.",
+		}
+	return {
+		"ok": true,
+		"message": "Kubeconfig loaded: %s" % _kubeconfig_path.get_file(),
+	}
+
+
+func get_kubeconfig_path() -> String:
+	return _kubeconfig_path
 
 
 func refresh(context_name: String = "") -> Dictionary:
@@ -53,6 +92,7 @@ func refresh(context_name: String = "") -> Dictionary:
 	return {
 		"mode": "live",
 		"message": "Live cluster data via kubectl.",
+		"kubeconfig_path": _kubeconfig_path,
 		"contexts": contexts,
 		"current_context": effective_context,
 		"namespaces": namespaces,
@@ -446,6 +486,8 @@ func _parse_json_dictionary(stdout: String) -> Dictionary:
 
 
 func _run_kubectl(args: PackedStringArray) -> Dictionary:
+	if not _kubeconfig_path.is_empty():
+		OS.set_environment("KUBECONFIG", _kubeconfig_path)
 	var output: Array = []
 	var exit_code := OS.execute("kubectl", args, output, true)
 	var combined_output := ""
@@ -591,6 +633,7 @@ func _build_demo_state(message: String) -> Dictionary:
 	return {
 		"mode": "demo",
 		"message": message,
+		"kubeconfig_path": _kubeconfig_path,
 		"contexts": DEMO_CONTEXTS,
 		"current_context": "prod-cluster",
 		"namespaces": DEMO_NAMESPACES,
@@ -601,6 +644,26 @@ func _build_demo_state(message: String) -> Dictionary:
 		"summary": _build_summary(nodes, pods),
 		"timestamp": Time.get_datetime_string_from_system(false, true),
 	}
+
+
+func _load_saved_kubeconfig() -> void:
+	var settings := ConfigFile.new()
+	var load_error := settings.load(SETTINGS_FILE)
+	if load_error != OK:
+		return
+	var configured_path := String(settings.get_value(SETTINGS_SECTION, SETTINGS_KEY_KUBECONFIG, ""))
+	if configured_path.is_empty():
+		return
+	if not FileAccess.file_exists(configured_path):
+		return
+	_kubeconfig_path = configured_path
+	OS.set_environment("KUBECONFIG", _kubeconfig_path)
+
+
+func _save_kubeconfig() -> int:
+	var settings := ConfigFile.new()
+	settings.set_value(SETTINGS_SECTION, SETTINGS_KEY_KUBECONFIG, _kubeconfig_path)
+	return settings.save(SETTINGS_FILE)
 
 
 func _demo_pod(

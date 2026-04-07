@@ -2,20 +2,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="220" height="40" viewBox="0 0 220 40" version="1.1">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0b1d2b"/>
-      <stop offset="70%" stop-color="#122333"/>
-      <stop offset="100%" stop-color="#101c28"/>
+      <stop offset="0%" stop-color="#0a1723"/>
+      <stop offset="100%" stop-color="#0e1a24"/>
     </linearGradient>
   </defs>
   <g>
-    <path d="M14 2 H198 L218 18 V22 L198 38 H14 L2 26 V14 Z" fill="url(#bg)" stroke="#53e4ff" stroke-opacity="0.88" stroke-width="2"/>
-    <path d="M22 9 H188 L205 21 L188 31 H22 L12 23 V17 Z" fill="none" stroke="#315a74" stroke-width="1"/>
-    <path d="M28 12 H178" stroke="#53e4ff" stroke-width="1.8"/>
-    <path d="M182 12 H204" stroke="#ffb13c" stroke-width="1.8"/>
-    <path d="M28 17 H166" stroke="#315a74" stroke-opacity="0.55" stroke-width="1"/>
-    <path d="M8 14 H16" stroke="#53e4ff" stroke-width="1.4"/>
-    <path d="M8 14 V24" stroke="#53e4ff" stroke-width="1.4"/>
-    <path d="M210 27 H202" stroke="#ffb13c" stroke-width="1.4"/>
-    <path d="M210 27 V19" stroke="#ffb13c" stroke-width="1.4"/>
+    <path d="M12 2 H200 L218 18 V22 L200 38 H12 L2 28 V12 Z" fill="url(#bg)" stroke="#53e4ff" stroke-opacity="0.72" stroke-width="1.8"/>
+    <path d="M20 9 H190 L204 21 L190 31 H20 L11 24 V16 Z" fill="none" stroke="#223a49" stroke-width="1"/>
+    <path d="M24 8 H112" stroke="#53e4ff" stroke-opacity="0.9" stroke-width="1.8"/>
   </g>
 </svg>

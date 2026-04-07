@@ -25,4 +25,5 @@ godot --path .
 
 - `Exec Shell` opens an external terminal when one of `x-terminal-emulator`, `gnome-terminal`, `konsole`, or `xterm` is available.
 - `Port Forward` starts a background `kubectl port-forward` process and the button toggles into a stop action.
+- `Import Config` lets you select a kubeconfig file from disk; the selected path is persisted in `user://kube_axis.cfg` and applied as `KUBECONFIG`.
 - The dashboard auto-refreshes every 8 seconds.
