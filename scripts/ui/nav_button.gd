@@ -35,7 +35,7 @@ var _chevron_texture: Texture2D
 func _ready() -> void:
 	toggle_mode = true
 	focus_mode = Control.FOCUS_NONE
-	custom_minimum_size = Vector2(206.0, 42.0)
+	custom_minimum_size = Vector2(184.0, 40.0)
 	_idle_texture = _load_png_texture(IDLE_PATH)
 	_active_texture = _load_png_texture(ACTIVE_PATH)
 	_icon_idle_texture = _load_png_texture(ICON_IDLE_PATH)
@@ -79,16 +79,16 @@ func _on_toggled(_pressed_state: bool) -> void:
 
 
 func _on_button_down() -> void:
-	_animate_state(1.0, 0.24 if not button_pressed else 0.22, SELECTED_GLOW if button_pressed else HOVER_GLOW, 1.0, 1.2, 0.985, TEXT_SELECTED if button_pressed else TEXT_HOVER)
+	_animate_state(1.0, 0.28 if not button_pressed else 0.34, SELECTED_GLOW if button_pressed else HOVER_GLOW, 1.0, 1.4, 0.985, TEXT_SELECTED if button_pressed else TEXT_HOVER)
 
 
 func _sync_visual_state() -> void:
 	_stop_selected_pulse()
 	if button_pressed:
-		_animate_state(1.0, 0.16, SELECTED_GLOW, 0.9, 0.8, 1.0, TEXT_SELECTED)
+		_animate_state(1.0, 0.28, SELECTED_GLOW, 1.0, 1.35, 1.0, TEXT_SELECTED)
 		_start_selected_pulse()
 	elif _hovered:
-		_animate_state(0.54, 0.14, HOVER_GLOW, 0.64, 0.8, 1.0, TEXT_HOVER)
+		_animate_state(0.54, 0.16, HOVER_GLOW, 0.72, 0.9, 1.0, TEXT_HOVER)
 	else:
 		_animate_state(0.0, 0.0, HOVER_GLOW, 0.0, 0.0, 1.0, TEXT)
 
@@ -107,9 +107,9 @@ func _animate_state(active_alpha: float, glow_alpha: float, glow_color: Color, l
 	_state_tween.tween_property($IconIdle, "modulate:a", 1.0 - min(active_alpha, 1.0), 0.16)
 	_state_tween.tween_property($TopLine, "modulate:a", line_alpha, 0.14)
 	_state_tween.tween_property($WarmTick, "modulate:a", warm_alpha, 0.14)
-	_state_tween.tween_property($LabelShadow, "position:x", 81.0 if target_scale <= 1.0 else 85.0, 0.16)
-	_state_tween.tween_property($Label, "position:x", 80.0 if target_scale <= 1.0 else 84.0, 0.16)
-	_state_tween.tween_property($Chevron, "position:x", size.x - 33.0, 0.16)
+	_state_tween.tween_property($LabelShadow, "position:x", 67.0 if target_scale <= 1.0 else 71.0, 0.16)
+	_state_tween.tween_property($Label, "position:x", 66.0 if target_scale <= 1.0 else 70.0, 0.16)
+	_state_tween.tween_property($Chevron, "position:x", size.x - 27.0, 0.16)
 	$Glow.modulate = Color(glow_color.r, glow_color.g, glow_color.b, $Glow.modulate.a)
 	$TopLine.color = Color(glow_color.r, glow_color.g, glow_color.b, 1.0)
 	$WarmTick.color = Color(WARM_GLOW.r, WARM_GLOW.g, WARM_GLOW.b, 1.0)
@@ -124,9 +124,9 @@ func _start_selected_pulse() -> void:
 	_pulse_tween.set_loops()
 	_pulse_tween.set_trans(Tween.TRANS_SINE)
 	_pulse_tween.set_ease(Tween.EASE_IN_OUT)
-	_pulse_tween.tween_property($Glow, "modulate:a", 0.2, 0.92)
-	_pulse_tween.parallel().tween_property($Glow, "scale", Vector2(1.01, 1.01), 0.92)
-	_pulse_tween.tween_property($Glow, "modulate:a", 0.12, 1.08)
+	_pulse_tween.tween_property($Glow, "modulate:a", 0.36, 0.92)
+	_pulse_tween.parallel().tween_property($Glow, "scale", Vector2(1.03, 1.03), 0.92)
+	_pulse_tween.tween_property($Glow, "modulate:a", 0.22, 1.08)
 	_pulse_tween.parallel().tween_property($Glow, "scale", Vector2(1.0, 1.0), 1.08)
 
 
@@ -138,7 +138,7 @@ func _stop_selected_pulse() -> void:
 
 func _update_pivots() -> void:
 	$Glow.pivot_offset = $Glow.size * 0.5
-	$Chevron.position.x = size.x - 33.0
+	$Chevron.position.x = size.x - 27.0
 
 
 func _apply_label_text() -> void:

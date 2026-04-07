@@ -87,7 +87,7 @@ func _draw_header_strip(rect: Rect2) -> void:
 	draw_circle(Vector2(marker_x, top_rect.position.y + 14.0), 6.0, Color(1.0, 0.68, 0.2, 0.8))
 	draw_circle(Vector2(marker_x, top_rect.position.y + 14.0), 12.0, Color(1.0, 0.68, 0.2, 0.16))
 	var font := ThemeDB.fallback_font
-	draw_string(font, top_rect.position + Vector2(12.0, 22.0), "INCIDENT REPLAY // %s" % current_mode.to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1.0, 13, TEXT_MUTED)
+	draw_string(font, top_rect.position + Vector2(12.0, 22.0), "NAV FOCUS // %s" % current_mode.to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1.0, 13, TEXT_MUTED)
 	draw_string(font, top_rect.position + Vector2(top_rect.size.x - 56.0, 22.0), "NOW", HORIZONTAL_ALIGNMENT_LEFT, -1.0, 12, TEXT_MUTED)
 
 
@@ -230,7 +230,7 @@ func _make_group_card(group: Dictionary) -> Control:
 	card.text = ""
 	card.focus_mode = Control.FOCUS_NONE
 	card.custom_minimum_size = Vector2(180.0, 104.0)
-	card.add_theme_stylebox_override("normal", _card_style(is_selected, current_mode == "Logs"))
+	card.add_theme_stylebox_override("normal", _card_style(is_selected, current_mode != "Workloads"))
 	card.add_theme_stylebox_override("hover", _card_style(true, false))
 	card.add_theme_stylebox_override("pressed", _card_style(true, false))
 	card.pressed.connect(func(): emit_signal("group_selected", String(group.get("key", ""))))

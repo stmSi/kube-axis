@@ -226,118 +226,78 @@ size_flags_vertical = 3
 theme_override_constants/separation = 12
 
 [node name="LeftColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body"]
-custom_minimum_size = Vector2(252, 0)
+custom_minimum_size = Vector2(202, 0)
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 10
 
-[node name="ContextsPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
+[node name="ScopePanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
 script = ExtResource("3_section")
-section_title = "Contexts"
+section_title = "Cluster Scope"
 section_accent_color = Color(0.345098, 0.941176, 1, 1)
 
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel"]
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin"]
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell"]
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
 layout_mode = 2
 
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell/HeaderRow"]
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/HeaderRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 12
+theme_override_constants/margin_top = 10
 
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell"]
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 
-[node name="ContextsButtons" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell/Body"]
+[node name="ContextsButtons" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
-[node name="NamespacePanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
-script = ExtResource("3_section")
-section_title = "Namespace Scope"
-section_accent_color = Color(0.454902, 0.690196, 1, 1)
-
-[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin"]
+[node name="NamespaceLabel" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 10
+text = "NAMESPACE"
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 10
 
-[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
-layout_mode = 2
-
-[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/HeaderRow"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_top = 12
-
-[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
-custom_minimum_size = Vector2(0, 2)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 10
-
-[node name="NamespaceOption" type="OptionButton" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/Body"]
+[node name="NamespaceOption" type="OptionButton" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ModeHint" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/Body"]
+[node name="ModeHint" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/ScopePanel/ContentMargin/Shell/Body"]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
 theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 
 [node name="NavigationPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
 script = ExtResource("3_section")
@@ -351,16 +311,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 
 [node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell"]
 layout_mode = 2
@@ -372,7 +332,7 @@ layout_mode = 2
 [node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 12
+theme_override_constants/margin_top = 10
 
 [node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
 custom_minimum_size = Vector2(0, 2)
@@ -383,7 +343,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 
 [node name="NavWorkloads" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
 unique_name_in_owner = true
@@ -395,25 +355,30 @@ unique_name_in_owner = true
 layout_mode = 2
 label_text = "NODES"
 
-[node name="NavEvents" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavConfig" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
-label_text = "EVENTS"
+label_text = "CONFIG"
 
-[node name="NavLogs" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavNetwork" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
-label_text = "LOGS"
+label_text = "NETWORK"
 
-[node name="NavMetrics" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavStorage" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
-label_text = "METRICS"
+label_text = "STORAGE"
 
-[node name="NavTerminal" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+[node name="NavHelm" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
 unique_name_in_owner = true
 layout_mode = 2
-label_text = "TERMINAL"
+label_text = "HELM"
+
+[node name="NavAccess" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "ACCESS"
 
 [node name="TelemetryPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
 size_flags_vertical = 3
@@ -428,16 +393,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 
 [node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell"]
 layout_mode = 2
@@ -449,7 +414,7 @@ layout_mode = 2
 [node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 12
+theme_override_constants/margin_top = 10
 
 [node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
 custom_minimum_size = Vector2(0, 2)
@@ -460,7 +425,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 
 [node name="TelemetrySummary" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body"]
 unique_name_in_owner = true

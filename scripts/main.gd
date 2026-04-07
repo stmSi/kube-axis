@@ -117,10 +117,11 @@ func _cache_ui_refs() -> void:
 	ui.resource_buttons = {
 		"Workloads": %NavWorkloads,
 		"Nodes": %NavNodes,
-		"Events": %NavEvents,
-		"Logs": %NavLogs,
-		"Metrics": %NavMetrics,
-		"Terminal": %NavTerminal,
+		"Config": %NavConfig,
+		"Network": %NavNetwork,
+		"Storage": %NavStorage,
+		"Helm": %NavHelm,
+		"Access": %NavAccess,
 	}
 	ui.metric_cards = {
 		"cpu": %MetricCPU,
@@ -355,15 +356,6 @@ func _update_detail_panel() -> void:
 
 
 func _update_detail_tab_if_needed() -> void:
-	match selected_resource:
-		"Logs":
-			ui.detail_tabs.current_tab = 1
-		"Events":
-			ui.detail_tabs.current_tab = 2
-		"Metrics":
-			ui.detail_tabs.current_tab = 3
-		_:
-			pass
 	if ui.detail_tabs.current_tab == 1:
 		_load_selected_logs()
 
@@ -389,7 +381,7 @@ func _update_mode_labels() -> void:
 		dashboard_state.get("nodes", []).size(),
 		_filtered_pods().size(),
 	]
-	ui.telemetry_footer.text = "SCOPE: %s\nCONTEXT: %s\nRESOURCE FOCUS: %s" % [selected_namespace.to_upper(), selected_context.to_upper(), selected_resource.to_upper()]
+	ui.telemetry_footer.text = "SCOPE: %s\nCONTEXT: %s\nNAV FOCUS: %s" % [selected_namespace.to_upper(), selected_context.to_upper(), selected_resource.to_upper()]
 
 
 func _on_context_selected(context_name: String) -> void:
@@ -411,9 +403,7 @@ func _on_namespace_selected(index: int) -> void:
 
 func _on_resource_selected(resource_name: String) -> void:
 	selected_resource = resource_name
-	if resource_name == "Terminal":
-		ui.terminal_output.grab_focus()
-	_set_status("Focused %s view." % resource_name)
+	_set_status("Focused %s domain." % resource_name)
 	_update_cluster_map()
 	_update_detail_panel()
 	_update_mode_labels()
@@ -720,6 +710,8 @@ func _build_theme() -> Theme:
 	built_theme.set_color("font_pressed_color", "Button", TEXT)
 	built_theme.set_color("font_hover_color", "Button", TEXT)
 	built_theme.set_color("font_color", "OptionButton", TEXT)
+	built_theme.set_color("font_hover_color", "OptionButton", TEXT)
+	built_theme.set_color("font_pressed_color", "OptionButton", TEXT)
 	built_theme.set_color("font_color", "TabBar", TEXT)
 	built_theme.set_color("font_selected_color", "TabBar", TEXT)
 	built_theme.set_color("font_unselected_color", "TabBar", TEXT_MUTED)
@@ -737,17 +729,18 @@ func _build_theme() -> Theme:
 	built_theme.set_stylebox("hover", "Button", _button_style(PANEL_BG_ALT.lightened(0.05), BORDER))
 	built_theme.set_stylebox("pressed", "Button", _button_style(Color(0.11, 0.25, 0.36, 0.98), ACCENT_WARM))
 	built_theme.set_stylebox("focus", "Button", StyleBoxEmpty.new())
-	built_theme.set_stylebox("normal", "OptionButton", _button_style(PANEL_BG_ALT, BORDER_SOFT))
-	built_theme.set_stylebox("hover", "OptionButton", _button_style(PANEL_BG_ALT.lightened(0.05), BORDER))
-	built_theme.set_stylebox("pressed", "OptionButton", _button_style(Color(0.11, 0.25, 0.36, 0.98), ACCENT_WARM))
+	built_theme.set_stylebox("normal", "OptionButton", _texture_stylebox("res://assets/ui/dropdown_idle.png", 22, 16.0, 44.0, 11.0, 11.0))
+	built_theme.set_stylebox("hover", "OptionButton", _texture_stylebox("res://assets/ui/dropdown_hover.png", 22, 16.0, 44.0, 11.0, 11.0))
+	built_theme.set_stylebox("pressed", "OptionButton", _texture_stylebox("res://assets/ui/dropdown_pressed.png", 22, 16.0, 44.0, 11.0, 11.0))
 	built_theme.set_stylebox("focus", "OptionButton", StyleBoxEmpty.new())
 	built_theme.set_stylebox("panel", "TextEdit", _editor_style())
-	built_theme.set_stylebox("tab_selected", "TabBar", _button_style(Color(0.11, 0.23, 0.34, 1.0), ACCENT_WARM))
-	built_theme.set_stylebox("tab_hovered", "TabBar", _button_style(Color(0.09, 0.19, 0.29, 1.0), BORDER))
-	built_theme.set_stylebox("tab_unselected", "TabBar", _button_style(Color(0.06, 0.12, 0.18, 1.0), BORDER_SOFT))
+	built_theme.set_stylebox("tab_selected", "TabBar", _texture_stylebox("res://assets/ui/tab_selected.png", 16, 18.0, 18.0, 10.0, 10.0))
+	built_theme.set_stylebox("tab_hovered", "TabBar", _texture_stylebox("res://assets/ui/tab_hover.png", 16, 18.0, 18.0, 10.0, 10.0))
+	built_theme.set_stylebox("tab_unselected", "TabBar", _texture_stylebox("res://assets/ui/tab_idle.png", 16, 18.0, 18.0, 10.0, 10.0))
 	built_theme.set_stylebox("tabbar_background", "TabContainer", StyleBoxEmpty.new())
 	built_theme.set_stylebox("panel", "TabContainer", StyleBoxEmpty.new())
 	built_theme.set_constant("side_margin", "Button", 14)
+	built_theme.set_constant("h_separation", "TabBar", 6)
 	built_theme.set_constant("outline_size", "Button", 0)
 	return built_theme
 
@@ -778,6 +771,21 @@ func _button_style(fill: Color, border_color: Color) -> StyleBoxFlat:
 	return style
 
 
+func _texture_stylebox(texture_path: String, margin: int, content_left: float, content_right: float, content_top: float, content_bottom: float) -> StyleBoxTexture:
+	var style := StyleBoxTexture.new()
+	style.texture = _load_theme_texture(texture_path)
+	style.texture_margin_left = margin
+	style.texture_margin_top = margin
+	style.texture_margin_right = margin
+	style.texture_margin_bottom = margin
+	style.content_margin_left = content_left
+	style.content_margin_right = content_right
+	style.content_margin_top = content_top
+	style.content_margin_bottom = content_bottom
+	style.draw_center = true
+	return style
+
+
 func _editor_style() -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.03, 0.08, 0.12, 0.94)
@@ -789,3 +797,12 @@ func _editor_style() -> StyleBoxFlat:
 	style.content_margin_right = 10.0
 	style.content_margin_bottom = 10.0
 	return style
+
+
+func _load_theme_texture(texture_path: String) -> Texture2D:
+	var image := Image.new()
+	var error := image.load(ProjectSettings.globalize_path(texture_path))
+	if error != OK:
+		push_warning("Unable to load theme texture: %s" % texture_path)
+		return null
+	return ImageTexture.create_from_image(image)
