@@ -1,0 +1,892 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/chrome_panel.gd" id="2_chrome"]
+[ext_resource type="Script" path="res://scripts/ui/panel_section.gd" id="3_section"]
+[ext_resource type="PackedScene" path="res://scenes/components/header_chip.tscn" id="4_chip"]
+[ext_resource type="PackedScene" path="res://scenes/components/nav_button.tscn" id="5_nav"]
+[ext_resource type="PackedScene" path="res://scenes/components/stat_chip.tscn" id="6_stat"]
+[ext_resource type="PackedScene" path="res://scenes/components/metric_card.tscn" id="7_metric"]
+[ext_resource type="PackedScene" path="res://scenes/components/cluster_map.tscn" id="8_map"]
+[ext_resource type="PackedScene" path="res://scenes/components/sparkline.tscn" id="9_spark"]
+[ext_resource type="PackedScene" path="res://scenes/components/action_button.tscn" id="10_action"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="RootMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="MainColumn" type="VBoxContainer" parent="RootMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="TopStrip" type="HBoxContainer" parent="RootMargin/MainColumn"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BrandPanel" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip"]
+custom_minimum_size = Vector2(318, 72)
+script = ExtResource("2_chrome")
+fill_color = Color(0.06, 0.14, 0.23, 0.96)
+accent_color = Color(0.345098, 0.941176, 1, 0.84)
+trim_color = Color(0.156863, 0.376471, 0.486275, 0.8)
+glow_color = Color(1, 0.717647, 0.262745, 1)
+emphasize_right = true
+frame_texture_path = "res://assets/ui/panel_frame_cyan.png"
+frame_patch_margin = 30
+
+[node name="BrandMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="BrandRow" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Emblem" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow"]
+custom_minimum_size = Vector2(44, 44)
+script = ExtResource("2_chrome")
+fill_color = Color(0.09, 0.2, 0.31, 1)
+accent_color = Color(0.345098, 0.941176, 1, 0.84)
+trim_color = Color(0.156863, 0.376471, 0.486275, 0.8)
+glow_color = Color(1, 0.717647, 0.262745, 1)
+compact = true
+show_inner_frame = false
+cut_size = 12.0
+
+[node name="EmblemLabel" type="Label" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow/Emblem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "KA"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.345098, 0.941176, 1, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="BrandCopy" type="VBoxContainer" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow"]
+layout_mode = 2
+alignment = 1
+
+[node name="BrandTitle" type="Label" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow/BrandCopy"]
+layout_mode = 2
+text = "K8S COMMAND"
+theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="BrandSubtitle" type="Label" parent="RootMargin/MainColumn/TopStrip/BrandPanel/BrandMargin/BrandRow/BrandCopy"]
+layout_mode = 2
+text = "TACTICAL KUBERNETES CONTROL SURFACE"
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 11
+
+[node name="SummaryPanel" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip"]
+custom_minimum_size = Vector2(0, 72)
+size_flags_horizontal = 3
+script = ExtResource("2_chrome")
+fill_color = Color(0.05, 0.12, 0.2, 0.96)
+accent_color = Color(0.454902, 0.690196, 1, 0.84)
+trim_color = Color(0.156863, 0.376471, 0.486275, 0.8)
+glow_color = Color(1, 0.717647, 0.262745, 1)
+frame_texture_path = "res://assets/ui/panel_frame_cyan.png"
+frame_patch_margin = 30
+
+[node name="SummaryMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="SummaryRow" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="SummaryTitles" type="VBoxContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SummaryContext" type="Label" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryTitles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
+theme_override_font_sizes/font_size = 19
+
+[node name="SummaryMeta" type="Label" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryTitles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 12
+
+[node name="SummaryChips" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow"]
+layout_mode = 2
+alignment = 2
+theme_override_constants/separation = 10
+
+[node name="SummaryPods" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" instance=ExtResource("6_stat")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PODS 0"
+
+[node name="SummaryNodes" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" instance=ExtResource("6_stat")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NODES 0"
+
+[node name="SummaryCPU" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" instance=ExtResource("6_stat")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CPU 0%"
+
+[node name="SummaryMemory" parent="RootMargin/MainColumn/TopStrip/SummaryPanel/SummaryMargin/SummaryRow/SummaryChips" instance=ExtResource("6_stat")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "MEM 0%"
+
+[node name="ActionPanel" type="PanelContainer" parent="RootMargin/MainColumn/TopStrip"]
+custom_minimum_size = Vector2(320, 72)
+script = ExtResource("2_chrome")
+fill_color = Color(0.08, 0.13, 0.2, 0.96)
+accent_color = Color(1, 0.717647, 0.262745, 0.84)
+trim_color = Color(0.156863, 0.376471, 0.486275, 0.8)
+glow_color = Color(1, 0.717647, 0.262745, 1)
+emphasize_right = true
+frame_texture_path = "res://assets/ui/panel_frame_orange.png"
+frame_patch_margin = 30
+
+[node name="ActionMargin" type="MarginContainer" parent="RootMargin/MainColumn/TopStrip/ActionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="ActionRow" type="HBoxContainer" parent="RootMargin/MainColumn/TopStrip/ActionPanel/ActionMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ConnectionMode" type="Label" parent="RootMargin/MainColumn/TopStrip/ActionPanel/ActionMargin/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
+theme_override_font_sizes/font_size = 14
+
+[node name="RefreshButton" parent="RootMargin/MainColumn/TopStrip/ActionPanel/ActionMargin/ActionRow" instance=ExtResource("10_action")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 40)
+layout_mode = 2
+label_text = "REFRESH"
+pressed_glow_color = Color(1, 0.717647, 0.262745, 1)
+
+[node name="Body" type="HBoxContainer" parent="RootMargin/MainColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="LeftColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body"]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ContextsPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
+script = ExtResource("3_section")
+section_title = "Contexts"
+section_accent_color = Color(0.345098, 0.941176, 1, 1)
+
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="ContextsButtons" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/ContextsPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NamespacePanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
+script = ExtResource("3_section")
+section_title = "Namespace Scope"
+section_accent_color = Color(0.454902, 0.690196, 1, 1)
+
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="NamespaceOption" type="OptionButton" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ModeHint" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/NamespacePanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="NavigationPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
+script = ExtResource("3_section")
+section_title = "Navigation"
+section_accent_color = Color(0.454902, 0.690196, 1, 1)
+
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="NavWorkloads" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "WORKLOADS"
+
+[node name="NavNodes" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "NODES"
+
+[node name="NavEvents" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "EVENTS"
+
+[node name="NavLogs" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "LOGS"
+
+[node name="NavMetrics" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "METRICS"
+
+[node name="NavTerminal" parent="RootMargin/MainColumn/Body/LeftColumn/NavigationPanel/ContentMargin/Shell/Body" instance=ExtResource("5_nav")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "TERMINAL"
+
+[node name="TelemetryPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/LeftColumn"]
+size_flags_vertical = 3
+script = ExtResource("3_section")
+section_title = "Flight Telemetry"
+section_accent_color = Color(1, 0.717647, 0.262745, 1)
+
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TelemetrySummary" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
+theme_override_font_sizes/font_size = 15
+
+[node name="TelemetrySpark" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body" instance=ExtResource("9_spark")]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 118)
+size_flags_vertical = 3
+
+[node name="TelemetryFooter" type="Label" parent="RootMargin/MainColumn/Body/LeftColumn/TelemetryPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="CenterColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="OverviewPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_section")
+section_title = "Cluster Overview"
+section_accent_color = Color(0.345098, 0.941176, 1, 1)
+
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="OverviewHeader" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OverviewTitle" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body/OverviewHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="OverviewStatus" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body/OverviewHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 2
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="ClusterMap" parent="RootMargin/MainColumn/Body/CenterColumn/OverviewPanel/ContentMargin/Shell/Body" instance=ExtResource("8_map")]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 320)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LowerRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn"]
+custom_minimum_size = Vector2(0, 208)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="EventPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_section")
+section_title = "Event Stream"
+section_accent_color = Color(1, 0.717647, 0.262745, 1)
+
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="EventStream" type="TextEdit" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/EventPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+editable = false
+focus_mode = 0
+
+[node name="MetricsPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_section")
+section_title = "Metrics"
+section_accent_color = Color(0.407843, 1, 0.603922, 1)
+
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="MetricsGrid" type="GridContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="MetricCPU" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" instance=ExtResource("7_metric")]
+unique_name_in_owner = true
+layout_mode = 2
+card_title = "CPU Load"
+line_color = Color(1, 0.717647, 0.262745, 1)
+
+[node name="MetricMemory" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" instance=ExtResource("7_metric")]
+unique_name_in_owner = true
+layout_mode = 2
+card_title = "Memory"
+line_color = Color(1, 0.556863, 0.384314, 1)
+
+[node name="MetricPods" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" instance=ExtResource("7_metric")]
+unique_name_in_owner = true
+layout_mode = 2
+card_title = "Pod Readiness"
+line_color = Color(0.407843, 1, 0.603922, 1)
+
+[node name="MetricEvents" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/MetricsPanel/ContentMargin/Shell/Body/MetricsGrid" instance=ExtResource("7_metric")]
+unique_name_in_owner = true
+layout_mode = 2
+card_title = "Event Rate"
+line_color = Color(0.345098, 0.941176, 1, 1)
+
+[node name="TerminalPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_section")
+section_title = "Terminal"
+section_accent_color = Color(0.454902, 0.690196, 1, 1)
+
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TerminalTitle" type="Label" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="TerminalOutput" type="TextEdit" parent="RootMargin/MainColumn/Body/CenterColumn/LowerRow/TerminalPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+editable = false
+focus_mode = 0
+
+[node name="RightColumn" type="VBoxContainer" parent="RootMargin/MainColumn/Body"]
+custom_minimum_size = Vector2(342, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DetailPanel" type="PanelContainer" parent="RootMargin/MainColumn/Body/RightColumn"]
+size_flags_vertical = 3
+script = ExtResource("3_section")
+section_title = "Inspector"
+section_accent_color = Color(0.345098, 0.941176, 1, 1)
+section_emphasize_right = true
+
+[node name="ContentMargin" type="MarginContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/HeaderRow" instance=ExtResource("4_chip")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Body" type="VBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="DetailTitle" type="Label" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.886275, 0.956863, 1, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="DetailSubtitle" type="Label" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="DetailTabs" type="TabContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Overview" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs"]
+unique_name_in_owner = true
+layout_mode = 2
+editable = false
+focus_mode = 0
+
+[node name="Logs" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs"]
+unique_name_in_owner = true
+layout_mode = 2
+editable = false
+focus_mode = 0
+
+[node name="Events" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs"]
+unique_name_in_owner = true
+layout_mode = 2
+editable = false
+focus_mode = 0
+
+[node name="Metrics" type="TextEdit" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailTabs"]
+unique_name_in_owner = true
+layout_mode = 2
+editable = false
+focus_mode = 0
+
+[node name="DetailActions" type="HBoxContainer" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ExecButton" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailActions" instance=ExtResource("10_action")]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(126, 40)
+label_text = "EXEC SHELL"
+
+[node name="YamlButton" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailActions" instance=ExtResource("10_action")]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(124, 40)
+label_text = "VIEW YAML"
+
+[node name="PortButton" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body/DetailActions" instance=ExtResource("10_action")]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(138, 40)
+label_text = "PORT FORWARD"
+hover_glow_color = Color(0.509804, 1, 0.780392, 1)
+
+[node name="DetailFooter" type="Label" parent="RootMargin/MainColumn/Body/RightColumn/DetailPanel/ContentMargin/Shell/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.47451, 0.619608, 0.721569, 1)
+theme_override_font_sizes/font_size = 13

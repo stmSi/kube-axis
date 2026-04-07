@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/header_chip.gd" id="1_e1w0p"]
+
+[node name="HeaderChip" type="PanelContainer"]
+custom_minimum_size = Vector2(124, 30)
+script = ExtResource("1_e1w0p")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1

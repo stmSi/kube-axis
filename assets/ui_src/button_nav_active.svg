@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="336"
+  height="56"
+  viewBox="0 0 336 56"
+  version="1.1">
+  <defs>
+    <linearGradient id="bg_active" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#143338"/>
+      <stop offset="45%" stop-color="#18313f"/>
+      <stop offset="100%" stop-color="#0c1520"/>
+    </linearGradient>
+    <linearGradient id="wash" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7cffb8" stop-opacity="0.26"/>
+      <stop offset="55%" stop-color="#58ecff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="active_glow" x="-25%" y="-60%" width="150%" height="220%">
+      <feGaussianBlur stdDeviation="4.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g id="button_active">
+    <path
+      d="M20 2 H317 L334 19 V38 L317 54 H20 L2 38 V19 Z"
+      fill="url(#bg_active)"
+      stroke="#87ffbf"
+      stroke-width="2"
+      filter="url(#active_glow)"/>
+    <path
+      d="M3 3 H126 L140 15 H317 L333 31 V38 L317 54 H20 L2 38 V19 Z"
+      fill="url(#wash)"/>
+    <path
+      d="M28 9 H307 L323 23 V34 L307 47 H28 L13 34 V23 Z"
+      fill="none"
+      stroke="#4f8378"
+      stroke-width="1"/>
+    <path d="M28 14 H270" stroke="#87ffbf" stroke-width="1.8"/>
+    <path d="M272 14 H304" stroke="#ffb13c" stroke-width="2"/>
+    <path d="M28 44 H210" stroke="#58ecff" stroke-width="1" stroke-opacity="0.5"/>
+
+    <g id="left_icon_active">
+      <path
+        d="M26 28 L36 18 H52 L62 28 L52 38 H36 Z"
+        fill="#143830"
+        stroke="#9cffcd"
+        stroke-width="1.4"/>
+      <circle cx="44" cy="28" r="8.5" fill="#88ffc1" fill-opacity="0.18"/>
+      <path d="M44 19 V37" stroke="#9cffcd" stroke-width="1.2" stroke-opacity="0.75"/>
+      <path d="M31 28 H57" stroke="#9cffcd" stroke-width="1.2" stroke-opacity="0.75"/>
+      <circle cx="44" cy="28" r="4.8" fill="#9cffcd" fill-opacity="0.35" stroke="#d7ffe9" stroke-width="1"/>
+    </g>
+
+    <text
+      id="label_active"
+      x="79"
+      y="35"
+      fill="#effff6"
+      font-size="19"
+      font-family="Orbitron, Eurostile, Bank Gothic, sans-serif"
+      letter-spacing="1.5">PROD-CLUSTER</text>
+
+    <path
+      id="chevron_active"
+      d="M303 23 L312 28 L303 33"
+      fill="none"
+      stroke="#f2fff9"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+
+    <path d="M11 20 H19" stroke="#87ffbf" stroke-width="1.5"/>
+    <path d="M11 20 V30" stroke="#87ffbf" stroke-width="1.5"/>
+    <path d="M325 36 H317" stroke="#ffb13c" stroke-width="1.5"/>
+    <path d="M325 36 V28" stroke="#ffb13c" stroke-width="1.5"/>
+  </g>
+</svg>

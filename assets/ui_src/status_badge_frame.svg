@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="132"
+  height="40"
+  viewBox="0 0 132 40"
+  version="1.1">
+  <defs>
+    <linearGradient id="badge_bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0b1723"/>
+      <stop offset="100%" stop-color="#102231"/>
+    </linearGradient>
+  </defs>
+  <g id="status_badge_frame">
+    <path d="M14 2 H118 L130 14 V26 L118 38 H14 L2 26 V14 Z" fill="url(#badge_bg)" stroke="#5bf1ff" stroke-width="1.6"/>
+    <path d="M19 8 H112 L122 18 V22 L112 32 H19 L10 22 V18 Z" fill="none" stroke="#27485d" stroke-width="1"/>
+    <circle cx="25" cy="20" r="6" fill="#86ffbf" fill-opacity="0.28" stroke="#9dffd0" stroke-width="1.1"/>
+  </g>
+</svg>

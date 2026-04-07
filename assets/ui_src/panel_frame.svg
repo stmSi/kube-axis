@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="640"
+  height="420"
+  viewBox="0 0 640 420"
+  version="1.1">
+  <defs>
+    <linearGradient id="panel_bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a1725"/>
+      <stop offset="100%" stop-color="#07121c"/>
+    </linearGradient>
+    <filter id="frame_glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g id="panel_frame">
+    <path
+      d="M28 2 H611 L638 29 V390 L611 418 H28 L2 390 V29 Z"
+      fill="url(#panel_bg)"
+      stroke="#4fdcff"
+      stroke-opacity="0.75"
+      stroke-width="2"
+      filter="url(#frame_glow)"/>
+    <path
+      d="M38 12 H600 L627 40 V379 L600 408 H38 L13 379 V40 Z"
+      fill="none"
+      stroke="#244a61"
+      stroke-width="1"/>
+    <path
+      d="M49 20 H596"
+      stroke="#4fdcff"
+      stroke-width="1.8"/>
+    <path
+      d="M528 20 H596"
+      stroke="#ffb13c"
+      stroke-width="2"/>
+    <path
+      d="M49 28 H560"
+      stroke="#244a61"
+      stroke-width="1"
+      stroke-opacity="0.5"/>
+
+    <path d="M26 40 H48" stroke="#4fdcff" stroke-width="1.5"/>
+    <path d="M26 40 V62" stroke="#4fdcff" stroke-width="1.5"/>
+    <path d="M613 40 H591" stroke="#315d76" stroke-width="1.5"/>
+    <path d="M613 40 V62" stroke="#315d76" stroke-width="1.5"/>
+    <path d="M26 380 H48" stroke="#315d76" stroke-width="1.5"/>
+    <path d="M26 380 V358" stroke="#315d76" stroke-width="1.5"/>
+    <path d="M613 380 H591" stroke="#ffb13c" stroke-width="1.5"/>
+    <path d="M613 380 V358" stroke="#ffb13c" stroke-width="1.5"/>
+
+    <g id="title_chip">
+      <path
+        d="M49 34 H198 L212 48 V69 L198 82 H49 L36 69 V48 Z"
+        fill="#0b2230"
+        stroke="#4fdcff"
+        stroke-width="1.4"/>
+      <text
+        x="63"
+        y="63"
+        fill="#e6f7ff"
+        font-size="18"
+        font-family="Orbitron, Eurostile, Bank Gothic, sans-serif"
+        letter-spacing="1.4">CLUSTER OVERVIEW</text>
+    </g>
+
+    <g id="top_status">
+      <text
+        x="352"
+        y="62"
+        fill="#e6f7ff"
+        font-size="15"
+        font-family="Orbitron, Eurostile, Bank Gothic, sans-serif"
+        letter-spacing="0.9">35 PODS</text>
+      <text
+        x="442"
+        y="62"
+        fill="#e6f7ff"
+        font-size="15"
+        font-family="Orbitron, Eurostile, Bank Gothic, sans-serif"
+        letter-spacing="0.9">12 NODES</text>
+      <text
+        x="540"
+        y="62"
+        fill="#ffcf67"
+        font-size="15"
+        font-family="Orbitron, Eurostile, Bank Gothic, sans-serif"
+        letter-spacing="0.9">72% CPU</text>
+    </g>
+
+    <path d="M606 162 V268" stroke="#ffb13c" stroke-width="2.2" stroke-opacity="0.8"/>
+    <path d="M590 215 H606" stroke="#ffb13c" stroke-width="2.2"/>
+  </g>
+</svg>

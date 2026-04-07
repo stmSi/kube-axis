@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/panel_section.gd" id="1_6v4o0"]
+[ext_resource type="PackedScene" path="res://scenes/components/header_chip.tscn" id="2_v85ae"]
+
+[node name="PanelSection" type="PanelContainer"]
+script = ExtResource("1_6v4o0")
+
+[node name="ContentMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Shell" type="VBoxContainer" parent="ContentMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HeaderRow" type="HBoxContainer" parent="ContentMargin/Shell"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderChip" parent="ContentMargin/Shell/HeaderRow" instance=ExtResource("2_v85ae")]
+layout_mode = 2
+
+[node name="RuleWrap" type="MarginContainer" parent="ContentMargin/Shell/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="Rule" type="ColorRect" parent="ContentMargin/Shell/HeaderRow/RuleWrap"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.345098, 0.941176, 1, 0.24)
+
+[node name="Body" type="VBoxContainer" parent="ContentMargin/Shell"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
